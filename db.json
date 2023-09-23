@@ -1,0 +1,780 @@
+{
+  "films": [
+    {
+      "id": 1,
+      "poster": "unicorn.jpg",
+      "trailer": "unicorn.jpg",
+      "title": "Unicursed",
+      "director": "Ethan Blackwood",
+      "studio": "Midnight Entertainment Productions",
+      "description": "\"Unicursed: The Enigma of Shadows\" is a spine-chilling horror film that takes audiences on a terrifying journey into a realm where the majestic creatures known as unicorns become harbingers of darkness and terror. As these mythical beings arrive in the world of mortals, their once enchanting appearance becomes twisted, revealing a malevolent and sinister nature. As the townspeople delve deeper into the riddles, the nightmarish encounters with the unicorns intensify. Their once graceful horns turn into twisted, razor-sharp weapons, and their eyes emit a haunting glow that instills paralyzing fear. The unicorns relentlessly stalk their prey, turning Misthaven into a nightmarish landscape of dread and despair. Their once graceful horns turn into twisted, razor-sharp weapons, and their eyes emit a haunting glow that instills paralyzing fear. \"Unicursed: The Enigma of Shadows\" combines elements of psychological horror, supernatural suspense, and heart-pounding action. With its captivating storyline, atmospheric cinematography, and a haunting musical score, this film promises to immerse audiences in a world where the beloved mythical creatures turn into agents of terror, leaving a lasting impression of fear and fascination. Brace yourself for an unforgettable nightmare that will forever change the way you perceive unicorns. ",
+      "genre": [
+        "Horror",
+        "Animated",
+        "Supernatural"
+      ],
+      "duration": 134,
+      "language": "EN",
+      "ageRestriction": 18,
+      "production": "USA 2023",
+      "releaseDate": "12-08-2023",
+      "cast": [
+        "Evelyn Sinclair",
+        " Gabriel Wolfe",
+        " Amelia Cruz",
+        " Asher Bennett",
+        " Lily Monroe",
+        " Finn Donovan",
+        " Aurora Blake",
+        " Sebastian Hayes"
+      ],
+      "isAvailable": true
+    },
+    {
+      "id": 2,
+      "poster": "robots.jpg",
+      "trailer": "robots.jpg",
+      "title": "Metal Heroes",
+      "director": "Alexandra Reed",
+      "studio": "Thunderstrike Studios",
+      "description": "\"Metal Heroes: Rise of the Robotic Guardians\" is an adrenaline-pumping action film that combines the futuristic world of advanced robotics with the awe-inspiring universe of superheroes. Amidst the chaos, a group of extraordinary individuals with superhuman abilities, known as the Alpha Squadron, steps forward to protect the innocent. Led by the enigmatic Captain Vanguard, the team comprises diverse heroes with unique powers, including telekinesis, super strength, advanced weaponry skills, and more. Together, they engage in heart-stopping battles against the relentless hordes of mechanized adversaries, showcasing extraordinary feats of agility, combat prowess, and teamwork. Throughout the film, audiences are treated to visually stunning action sequences, featuring jaw-dropping acrobatics, explosive combat, and intense showdowns between the heroes and the formidable robotic forces. The fights escalate as the heroes uncover the Shadow Mechanic's grand plan to plunge the world into chaos and domination. Alongside the action, \"Metal Heroes: Rise of the Robotic Guardians\" delves into the emotional struggles and personal growth of its characters. Driven by a sense of duty and resilience, the heroes confront their own doubts and insecurities while discovering the true extent of their powers.",
+      "genre": [
+        " Action",
+        " Adventure",
+        " Sci-Fi"
+      ],
+      "duration": 122,
+      "language": "EN",
+      "ageRestriction": 12,
+      "production": "USA 2023",
+      "releaseDate": "2-08-2023",
+      "cast": [
+        " Vivienne Steele",
+        " Jasper Knight",
+        " Scarlett Rivers",
+        " Oliver Sterling",
+        " Isabella Reed",
+        " Maxon Hart"
+      ],
+      "isAvailable": true
+    },
+    {
+      "id": 3,
+      "poster": "zombie.jpg",
+      "trailer": "zombie.jpg",
+      "title": "Desolation: The Last Stand",
+      "director": "Sarah Harrison",
+      "studio": "Midnight Requiem Productions",
+      "description": "Description:\n\"Desolation: The Last Stand\" is a bone-chilling horror film that thrusts audiences into the heart of a relentless zombie apocalypse. Brace yourself for a gripping and terrifying journey as survivors fight for their lives in a world overrun by the undead. The story takes place in a once-thriving city that now lies in ruins, decimated by an unknown virus that turns its victims into ravenous, flesh-eating creatures. The few remaining survivors, including a diverse group of individuals from all walks of life, find themselves trapped in the midst of this nightmarish chaos. From heart-pounding escapes to desperate struggles for limited resources, \"Desolation: The Last Stand\" provides a relentless onslaught of suspense and terror. \"Desolation: The Last Stand\" combines pulse-pounding action, nerve-wracking suspense, and gut-wrenching horror to deliver an unforgettable cinematic experience. With its atmospheric cinematography, chilling visual effects, and a haunting musical score, this film will immerse audiences in a world where the undead rule and humanity's last hope lies in the hands of a few courageous survivors. Get ready for a horrifying journey that will leave you breathless and questioning what it truly means to be alive in the face of relentless terror.",
+      "genre": [
+        " Horror",
+        " Action"
+      ],
+      "duration": 118,
+      "language": "EN",
+      "ageRestriction": 18,
+      "production": "Canada 2023",
+      "releaseDate": "21-08-2023",
+      "cast": [
+        " Isabella Rivers",
+        " Max Sullivan",
+        " Ava Montgomery",
+        " Lucas Bennett",
+        " Olivia Diaz",
+        " Ethan Reed",
+        " Mia Lawson",
+        " Benjamin Clarke"
+      ],
+      "isAvailable": true
+    },
+    {
+      "id": 4,
+      "poster": "submarine.jpg",
+      "trailer": "submarine.jpg",
+      "title": "Steel Tide: Beyond the Depths",
+      "director": "Benjamin Hartman",
+      "studio": "Montgomery Pictures",
+      "description": " \"Steel Tide: Beyond the Depths\" is a gripping cinematic experience that takes audiences back to the 1960s, immersing them in the heart-pounding world of a high-stakes submarine mission. Set against the backdrop of a tense geopolitical climate, this film delves into the dangers, sacrifices, and heroism of submariners as they navigate treacherous waters on a top-secret mission. Led by the seasoned and resolute Captain James Donovan, the crew of the USS Tempest consists of a diverse group of individuals, each with their own unique skills and backgrounds. As they plunge into the depths of enemy territory, they encounter relentless challenges, battling not only the dangers of the sea but also the psychological strain of being submerged for extended periods. \"Steel Tide: Beyond the Depths\" explores the camaraderie and loyalty that develops among the crew members, their unwavering determination to complete the mission, and the sacrifices they must make for the greater good. With its captivating blend of action, war drama, and a poignant romantic storyline, \"Steel Tide: Beyond the Depths\" offers audiences a gripping cinematic experience. Immerse yourself in the tension, danger, and emotional depth of this thrilling journey, as the crew of the USS Tempest confronts their fears and pushes the boundaries of heroism during a pivotal moment in history.",
+      "genre": [
+        " Romance",
+        " Action",
+        " Historical"
+      ],
+      "duration": 119,
+      "language": "EN",
+      "ageRestriction": 18,
+      "production": "USA 2023",
+      "releaseDate": "14-07-2023",
+      "cast": [
+        " Liam Reynolds",
+        " Lucas Morgan",
+        " Ethan Sullivan",
+        " Benjamin Carter",
+        " Noah Bennett"
+      ],
+      "isAvailable": true
+    },
+    {
+      "id": 5,
+      "poster": "gnome.jpg",
+      "trailer": "gnome.jpg",
+      "title": "The Enchanted Garden: A Gnome's Tale",
+      "director": "Oliver Woodland",
+      "studio": "Pixie Dust Studios",
+      "description": "\"The Enchanted Garden: A Gnome's Tale\" is a delightful and enchanting movie designed specifically for kids, offering a heartwarming adventure set in a magical forest. Join a lovable garden gnome on a whimsical journey through a world brimming with wonder, friendship, and magical surprises. In a secret corner of the enchanted forest, nestled amidst vibrant flowers and towering trees, lives a curious and mischievous garden gnome named Oliver.  While the human world remains unaware, Oliver and his gnome companions come to life when no one is watching, embarking on their own whimsical escapades. \"The Enchanted Garden: A Gnome's Tale\" is a visually captivating film that showcases the beauty and magic of nature. Through breathtaking animation and a vibrant color palette, children will be transported to a world where imagination reigns supreme. With its endearing characters, enchanting visuals, and a touch of whimsy, \"The Enchanted Garden: A Gnome's Tale\" promises an unforgettable cinematic experience that will captivate and inspire young audiences. Prepare for a magical journey through an enchanting forest, where the smallest creatures hold the greatest power and where the imagination can truly flourish. Get ready to believe in the extraordinary, as \"The Enchanted Garden: A Gnome's Tale\" invites you to embark on an unforgettable adventure with Oliver and his friends. ",
+      "genre": [
+        " Animated",
+        " Supernatural",
+        " Kids"
+      ],
+      "duration": 108,
+      "language": "EN",
+      "ageRestriction": null,
+      "production": "France 2023",
+      "releaseDate": "28-07-2023",
+      "cast": [
+        " Emily Willowby",
+        " Ethan Hawthorne",
+        " Isabella Flickerleaf",
+        " Noah Thistledown",
+        " Mia Dewberry",
+        " Lucas Mosswood",
+        " Ava Fernleaf",
+        " Benjamin Bramblethorn"
+      ],
+      "isAvailable": true
+    },
+    {
+      "id": 6,
+      "poster": "dinosaurs.jpg",
+      "isAvailable": false
+    },
+    {
+      "id": 7,
+      "poster": "devil.jpg",
+      "isAvailable": false
+    },
+    {
+      "id": 8,
+      "poster": "elf.jpg",
+      "isAvailable": false
+    },
+    {
+      "id": 9,
+      "poster": "romance.jpg",
+      "isAvailable": false
+    },
+    {
+      "id": 10,
+      "poster": "western.jpg",
+      "isAvailable": false
+    }
+  ],
+  "repertoire": [
+    {
+      "id": 1,
+      "filmId": 4,
+      "hallId": 1,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "filmId": 5,
+      "hallId": 1,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": true,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 3,
+      "filmId": 4,
+      "hallId": 1,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": true,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "filmId": 3,
+      "hallId": 1,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "filmId": 2,
+      "hallId": 1,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "filmId": 2,
+      "hallId": 2,
+      "time": "09:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "filmId": 2,
+      "hallId": 2,
+      "time": "12:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "filmId": 3,
+      "hallId": 2,
+      "time": "15:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "filmId": 1,
+      "hallId": 2,
+      "time": "18:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "filmId": 1,
+      "hallId": 2,
+      "time": "21:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "filmId": 5,
+      "hallId": 3,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "filmId": 4,
+      "hallId": 3,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 13,
+      "filmId": 2,
+      "hallId": 3,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 14,
+      "filmId": 1,
+      "hallId": 3,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 15,
+      "filmId": 3,
+      "hallId": 3,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 16,
+      "filmId": 3,
+      "hallId": 4,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 17,
+      "filmId": 1,
+      "hallId": 4,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 18,
+      "filmId": 5,
+      "hallId": 4,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 19,
+      "filmId": 2,
+      "hallId": 4,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 20,
+      "filmId": 4,
+      "hallId": 4,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        1,
+        3,
+        5
+      ]
+    },{
+      "id": 21,
+      "filmId": 5,
+      "hallId": 1,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": true,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 22,
+      "filmId": 4,
+      "hallId": 1,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": true,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 23,
+      "filmId": 3,
+      "hallId": 1,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 24,
+      "filmId": 4,
+      "hallId": 1,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 25,
+      "filmId": 2,
+      "hallId": 1,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 26,
+      "filmId": 2,
+      "hallId": 2,
+      "time": "09:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 27,
+      "filmId": 3,
+      "hallId": 2,
+      "time": "12:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 28,
+      "filmId": 2,
+      "hallId": 2,
+      "time": "15:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 29,
+      "filmId": 1,
+      "hallId": 2,
+      "time": "18:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 30,
+      "filmId": 4,
+      "hallId": 2,
+      "time": "21:00",
+      "showingIn": "3D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 31,
+      "filmId": 5,
+      "hallId": 3,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 32,
+      "filmId": 2,
+      "hallId": 3,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 33,
+      "filmId": 4,
+      "hallId": 3,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 34,
+      "filmId": 2,
+      "hallId": 3,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 35,
+      "filmId": 3,
+      "hallId": 3,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 36,
+      "filmId": 1,
+      "hallId": 4,
+      "time": "09:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 37,
+      "filmId": 5,
+      "hallId": 4,
+      "time": "12:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 38,
+      "filmId": 5,
+      "hallId": 4,
+      "time": "15:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 39,
+      "filmId": 3,
+      "hallId": 4,
+      "time": "18:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": 40,
+      "filmId": 1,
+      "hallId": 4,
+      "time": "21:00",
+      "showingIn": "2D",
+      "language": "EN",
+      "enSubtitles": false,
+      "days": [
+        0,
+        2,
+        4,
+        6
+      ]
+    }
+  ],
+  "halls": [
+    {
+      "id": 1,
+      "name": "Studio hall",
+      "seatColumns": 6,
+      "seatRows": 6
+    },
+    {
+      "id": 2,
+      "name": "3D hall",
+      "seatColumns": 6,
+      "seatRows": 6
+    },
+    {
+      "id": 3,
+      "name": "First hall",
+      "seatColumns": 14,
+      "seatRows": 11
+    },
+    {
+      "id": 4,
+      "name": "Second hall",
+      "seatColumns": 14,
+      "seatRows": 11
+    }
+  ]
+}
