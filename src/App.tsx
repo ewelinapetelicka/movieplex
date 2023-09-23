@@ -1,7 +1,14 @@
+import {Navigate, Route, Routes} from "react-router";
+import {Dashboard} from "./pages/dashboard/Dashboard";
+
 export function App() {
     return (
-        <h1 className="text-3xl font-bold underline">
-            Hello world!
-        </h1>
+     <div>
+         <Routes>
+             <Route path={"/dashboard"} element={<Dashboard></Dashboard>}/>
+             <Route path={"*"} element={<Navigate to={'/dashboard'}></Navigate>}></Route>
+         </Routes>
+     </div>
+
     );
 }
