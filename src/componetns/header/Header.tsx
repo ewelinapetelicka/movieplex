@@ -1,13 +1,13 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTicket, faBars} from '@fortawesome/free-solid-svg-icons';
 import {useState} from "react";
-import {Menu} from "../../pages/menu/Menu";
+import {Menu} from "../menu/Menu";
 
 export function Header() {
     const [menu, setMenu] = useState<boolean>(false);
 
     return (
-        <div className={"bg-sky-700 h-20 flex items-center text-3xl pl-10 pr-10 justify-between"}>
+        <div className={"bg-sky-700 h-20 flex items-center text-3xl pl-10 pr-10 justify-between fixed w-full"}>
             <div>
                 <FontAwesomeIcon icon={faTicket} className={"rotate-45 pr-2 text-blue-50 "}/>
                 <button>
