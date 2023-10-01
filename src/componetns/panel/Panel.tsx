@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
+import {useNavigate} from "react-router-dom";
 
 interface PanelProps {
     header: string;
@@ -8,6 +9,7 @@ interface PanelProps {
 
 export function Panel(props: PanelProps) {
     const [films, setFilms] = useState<Film[]>([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('http://localhost:8000/films')
@@ -27,7 +29,11 @@ export function Panel(props: PanelProps) {
         <div>
             <div className={"w-full h-10 bg-orange-400 text-gray-900 font-bold flex items-center pl-4 mb-2"}>{props.header}</div>
             <div className={"flex display justify-evenly"}>{films.map((el) => {
-                return <img src={"/posters/" + el.poster} className={"w-[240px]"}></img>
+                return <img src={"/posters/" + el.poster} className={"w-[240px] " + (el.isAvailable? "cursor-pointer" : '')} onClick={()=>{
+                    if (el.isAvailable){
+                        navigate("/film/" + el.id)
+                    }
+                }}></img>
             })}</div>
         </div>
     )
