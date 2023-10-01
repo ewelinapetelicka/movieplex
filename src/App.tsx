@@ -5,7 +5,7 @@ import {FilmPage} from "./pages/film/FilmPage";
 
 export function App() {
     return (
-        <div className={'h-screen w-screen flex flex-col'}>
+        <div className={'h-screen w-full flex flex-col'}>
             <Header></Header>
             <div className={"grow bg-gray-900 pt-20"}>
                 <Routes>
