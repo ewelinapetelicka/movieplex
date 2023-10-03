@@ -2,6 +2,7 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
 import {Chip} from "../../componetns/chip/Chip";
+import style from "./FilmPage.module.css"
 
 export function FilmPage() {
     const params = useParams();
@@ -17,18 +18,18 @@ export function FilmPage() {
     }, [])
 
     return (
-        <div className={"flex items-stretch justify-evenly"}>
-            <div className={'w-1/5 bg-center bg-cover'} style={{backgroundImage: 'url(/posters/' + film?.poster + ')'}}></div>
-            <div className={"bg-gray-800 text-blue-50 w-4/5 justify-evenly flex flex-col p-2"}>
+        <div className={"flex items-stretch justify-evenly"} style={{minHeight:"calc(100vh - 80px)"}}>
+            <div className={'w-[35%] bg-center bg-cover'} style={{backgroundImage: 'url(/posters/' + film?.poster + ')'}}></div>
+            <div className={"bg-gray-800 text-blue-50 w-[65%] justify-evenly flex flex-col pl-3"}>
                 <p className={"text-3xl"}>{film?.title}</p>
                 <p className={"pt-2 pb-2"}>{film?.description}</p>
-                <p className={"flex gap-3 pl-7"}>{film?.genre.map((el) => {
+                <p className={"flex gap-3 pl-2"}>{film?.genre.map((el) => {
                     return (
-                        <Chip key={film?.id} text={el}></Chip>
+                        <Chip key={el} text={el}></Chip>
                     )
                 })}</p>
                 <div className={"flex"}>
-                    <table className={" border-separate border-spacing-x-8"}>
+                    <table className={style.table}>
                         <tbody>
                         <tr>
                             <td>Release date:</td>
