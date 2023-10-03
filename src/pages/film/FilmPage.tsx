@@ -2,24 +2,31 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
 import {Chip} from "../../componetns/chip/Chip";
-import style from "./FilmPage.module.css"
+import style from "./FilmPage.module.css";
+import {useNavigate} from "react-router-dom";
+
 
 export function FilmPage() {
     const params = useParams();
     const [film, setFilm] = useState<Film>();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:8000/films/' + params.id)
             .then(response => response.json())
             .then((data: Film) => {
+                if (!data.isAvailable) {
+                    navigate("/error")
+                }
                 setFilm(data)
             })
             .catch(error => console.error(error));
     }, [])
 
     return (
-        <div className={"flex items-stretch justify-evenly"} style={{minHeight:"calc(100vh - 80px)"}}>
-            <div className={'w-[35%] bg-center bg-cover'} style={{backgroundImage: 'url(/posters/' + film?.poster + ')'}}></div>
+        <div className={"flex items-stretch justify-evenly"} style={{minHeight: "calc(100vh - 80px)"}}>
+            <div className={'w-[35%] bg-center bg-cover'}
+                 style={{backgroundImage: 'url(/posters/' + film?.poster + ')'}}></div>
             <div className={"bg-gray-800 text-blue-50 w-[65%] justify-evenly flex flex-col pl-3"}>
                 <p className={"text-3xl"}>{film?.title}</p>
                 <p className={"pt-2 pb-2"}>{film?.description}</p>
