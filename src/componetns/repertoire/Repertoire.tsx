@@ -1,5 +1,5 @@
 export function Repertoire() {
     return (
-        <div>test</div>
+        <div className={"flex items-stretch justify-evenly"} style={{minHeight: "calc(100vh - 80px)"}}>test</div>
     )
 }

@@ -4,7 +4,7 @@ import {Repertoire} from "../../componetns/repertoire/Repertoire";
 export function FilmPage() {
 
     return (
-       <div>
+       <div className={""}>
            <FilmDetails></FilmDetails>
            <Repertoire></Repertoire>
        </div>
