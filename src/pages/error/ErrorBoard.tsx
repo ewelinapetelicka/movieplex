@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {Button} from "../../componetns/button/Button";
+import {Button} from "../../componetns/common/button/Button";
 
 export function ErrorBoard() {
     const navigate = useNavigate();

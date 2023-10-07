@@ -1,23 +1,27 @@
 import {Film} from "../../models/film/film";
-import {Chip} from "../chip/Chip";
+import {Chip} from "../common/chip/Chip";
 import style from "../../pages/film/FilmPage.module.css";
+import {Title} from "../common/title/Title";
 
-interface FilmDetailsProps{
-    film : Film
+interface FilmDetailsProps {
+    film: Film
 }
+
 export function FilmDetails(props: FilmDetailsProps) {
     return (
-        <div className={"flex items-stretch justify-evenly"} style={{minHeight: "calc(100vh - 80px)"}}>
+        <div className={"flex items-stretch"} style={{minHeight: "calc(100vh - 80px)"}}>
             <div className={'w-[35%] bg-center bg-cover'}
                  style={{backgroundImage: 'url(/posters/' + props.film?.poster + ')'}}></div>
             <div className={"bg-gray-800 text-blue-50 w-[65%] justify-evenly flex flex-col pl-3"}>
-                <p className={"text-3xl"}>{props.film?.title}</p>
-                <p className={"pt-2 pb-2"}>{props.film?.description}</p>
-                <p className={"flex gap-3 pl-2"}>{props.film?.genre.map((el) => {
-                    return (
-                        <Chip key={el} text={el}></Chip>
-                    )
-                })}</p>
+                <Title text={props.film.title}></Title>
+                <div>
+                    <p className={"pb-2 pr-10"}>{props.film?.description}</p>
+                    <p className={"flex gap-3"}>{props.film?.genre.map((el) => {
+                        return (
+                            <Chip key={el} text={el}></Chip>
+                        )
+                    })}</p>
+                </div>
                 <div className={"flex"}>
                     <table className={style.table}>
                         <tbody>
