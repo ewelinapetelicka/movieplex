@@ -4,7 +4,7 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
 import {useNavigate} from "react-router-dom";
-import {ErrorBoard} from "../error/ErrorBoard";
+import {Loader} from "../../componetns/common/loader/Loader";
 
 export function FilmPage() {
     const params = useParams();
@@ -24,7 +24,7 @@ export function FilmPage() {
     }, [])
 
     if (!film) {
-        return <ErrorBoard></ErrorBoard>
+        return <Loader></Loader>
     }
     return (
         <div>

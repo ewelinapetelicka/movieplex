@@ -1,6 +1,6 @@
 import {Navigate, Route, Routes} from "react-router";
 import {DashboardPage} from "./pages/dashboard/DashboardPage";
-import {Header} from "./componetns/header/Header";
+import {Header} from "./componetns/core/header/Header";
 import {FilmPage} from "./pages/film/FilmPage";
 import {ErrorBoard} from "./pages/error/ErrorBoard";
 
