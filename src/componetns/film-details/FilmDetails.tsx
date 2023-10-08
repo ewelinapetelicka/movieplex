@@ -32,12 +32,14 @@ export function FilmDetails(props: FilmDetailsProps) {
                         </tr>
                         <tr>
                             <td>Running time:</td>
-                            <td>{props.film?.duration}</td>
+                            <td>{props.film?.duration} min</td>
                         </tr>
-                        <tr>
-                            <td>Age restrictions:</td>
-                            <td>{props.film?.ageRestriction}</td>
-                        </tr>
+                        {props.film.ageRestriction && (
+                            <tr>
+                                <td>Age restrictions:</td>
+                                <td>{props.film?.ageRestriction}</td>
+                            </tr>
+                        )}
                         <tr>
                             <td>Production:</td>
                             <td>{props.film?.production}</td>
