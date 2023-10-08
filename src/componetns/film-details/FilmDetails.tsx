@@ -2,6 +2,7 @@ import {Film} from "../../models/film/film";
 import {Chip} from "../common/chip/Chip";
 import style from "../../pages/film/FilmPage.module.css";
 import {Title} from "../common/title/Title";
+import {ReleaseDate} from "../common/date/Date";
 
 interface FilmDetailsProps {
     film: Film
@@ -27,7 +28,7 @@ export function FilmDetails(props: FilmDetailsProps) {
                         <tbody>
                         <tr>
                             <td>Release date:</td>
-                            <td>{props.film?.releaseDate}</td>
+                            <td><ReleaseDate date={props.film.releaseDate}></ReleaseDate></td>
                         </tr>
                         <tr>
                             <td>Running time:</td>
