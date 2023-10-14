@@ -15,6 +15,7 @@ export function FilmPage() {
     const [repertoire, setRepertoire] = useState<Repertoire[]>();
     const [isError, setIsError] = useState(false);
 
+
     useEffect(() => {
         fetch('http://localhost:8000/films/' + params.id)
             .then(response => response.json())
@@ -34,7 +35,16 @@ export function FilmPage() {
                 if (!data) {
                     navigate("/error")
                 }
-                setRepertoire(data)
+                setRepertoire(
+                    data
+                        .filter((el) => {
+                            return el.days.includes(new Date().getDay())
+                        })
+                        .sort((a, b) => {
+                            return parseInt(a.time.slice(0, 2)) - parseInt(b.time.slice(0, 2))
+                        })
+                )
+
             })
             .catch(error => setIsError(true))
     }, []);

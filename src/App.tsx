@@ -3,6 +3,7 @@ import {DashboardPage} from "./pages/dashboard/DashboardPage";
 import {Header} from "./componetns/core/header/Header";
 import {FilmPage} from "./pages/film/FilmPage";
 import {ErrorBoard} from "./pages/error/ErrorBoard";
+import {SelectTickets} from "./pages/select-tickets/SelectTickets";
 
 export function App() {
     return (
@@ -13,6 +14,7 @@ export function App() {
                     <Route path={"/dashboard"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
                     <Route path={"/error"} element={<ErrorBoard></ErrorBoard>}/>
+                    <Route path={"/select-tickets"} element={<SelectTickets></SelectTickets>}/>
                     <Route path={"*"} element={<Navigate to={'/dashboard'}></Navigate>}></Route>
                 </Routes>
             </div>
