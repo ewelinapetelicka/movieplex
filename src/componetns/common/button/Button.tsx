@@ -1,29 +1,37 @@
 import {ReactNode} from "react";
 
 interface ButtonProps {
-    children: ReactNode;
+    children?: ReactNode;
     type: ButtonType;
     onClick: () => void;
 }
 
 export enum ButtonType {
     BLUE = "blue",
-    ORANGE = "orange"
+    ORANGE = "orange",
+    GRAY = "gray",
+    GRAY_CLICKED = "grayClicked"
 }
 
 export function Button(props: ButtonProps) {
 
-    function buttonStyles():string {
-        if (props.type===ButtonType.BLUE){
+    function buttonStyles(): string {
+        if (props.type === ButtonType.BLUE) {
             return "bg-sky-700 text-blue-50 p-2"
         }
-        return 'bg-orange-400 text-blue-50 p-3 font-bold text-lg'
+        if (props.type === ButtonType.GRAY) {
+            return "bg-sky-700 text-blue-50 p-2 border-2 border-white font-bold text-lg"
+        }
+        if (props.type === ButtonType.GRAY_CLICKED) {
+            return "bg-orange-400 text-blue-50 p-2 border-2 border-white font-bold text-lg"
+        }
+        return "bg-orange-400 text-blue-50 p-3 font-bold text-lg"
     }
 
     return (
-            <button className={"rounded-lg "+ buttonStyles()}
-                    onClick={props.onClick}>
-                {props.children}
-            </button>
-        )
+        <button className={"rounded-lg " + buttonStyles()}
+                onClick={props.onClick}>
+            {props.children}
+        </button>
+    )
 }

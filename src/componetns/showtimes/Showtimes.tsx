@@ -5,6 +5,7 @@ import {TimeTile} from "../common/time-tile/TimeTile";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, ButtonType} from "../common/button/Button";
+import {DayPicker} from "../day-picker/DayPicker";
 
 
 interface RepertoireProps {
@@ -37,6 +38,7 @@ export function Showtimes(props: RepertoireProps) {
                         <span>{month[new Date().getMonth()]}</span>
                         <span>{new Date().getFullYear()}</span>
                     </div>
+                    <DayPicker ></DayPicker>
                     <div className={"flex gap-2"}>
                         {repertoire2d.map((el) => {
                             return (
