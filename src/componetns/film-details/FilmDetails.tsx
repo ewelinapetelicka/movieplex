@@ -3,6 +3,7 @@ import {Chip} from "../common/chip/Chip";
 import style from "../../pages/film/FilmPage.module.css";
 import {Title} from "../common/title/Title";
 import {ReleaseDate} from "../common/date/Date";
+import {Button, ButtonType} from "../common/button/Button";
 
 interface FilmDetailsProps {
     film: Film
@@ -14,7 +15,12 @@ export function FilmDetails(props: FilmDetailsProps) {
             <div className={'w-[35%] bg-center bg-cover'}
                  style={{backgroundImage: 'url(/posters/' + props.film?.poster + ')'}}></div>
             <div className={"bg-gray-800 text-blue-50 w-[65%] justify-evenly flex flex-col pl-3"}>
-                <Title text={props.film.title}></Title>
+                <div className={"flex justify-between items-center pr-6"}>
+                    <Title text={props.film.title}></Title>
+                    <Button type={ButtonType.ORANGE} onClick={() => window.scrollTo(0, document.body.scrollHeight)}>
+                        BOOK NOW
+                    </Button>
+                </div>
                 <div>
                     <p className={"pb-2 pr-10"}>{props.film?.description}</p>
                     <p className={"flex gap-3"}>{props.film?.genre.map((el) => {
