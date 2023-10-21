@@ -16,7 +16,7 @@ export function DayPicker(props: DayPickerProps) {
     }
 
     return (
-        <div>
+        <div className={"flex gap-2"}>
             <Button type={clicked(new Date().getDay())} onClick={() => {
                 setDayClicked(new Date().getDay())
             }}>TODAY</Button>
