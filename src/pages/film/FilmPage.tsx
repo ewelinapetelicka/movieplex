@@ -37,9 +37,6 @@ export function FilmPage() {
                 }
                 setRepertoire(
                     data
-                        .filter((el) => {
-                            return el.days.includes(new Date().getDay())
-                        })
                         .sort((a, b) => {
                             return parseInt(a.time.slice(0, 2)) - parseInt(b.time.slice(0, 2))
                         })
