@@ -14,7 +14,7 @@ interface RepertoireProps {
 }
 
 export function Showtimes(props: RepertoireProps) {
-    const [day, setDay] = useState(new Date().getDay());
+    const [date, setDate] = useState(new Date());
     const [repertoire2d, setRepertoire2d] = useState<Repertoire[]>([]);
     const [repertoire3d, setRepertoire3d] = useState<Repertoire[]>([]);
     const days = useDays();
@@ -24,19 +24,19 @@ export function Showtimes(props: RepertoireProps) {
     useEffect(() => {
         setRepertoire2d(
             props.repertoire.filter((el) => {
-                return el.days.includes(day)
+                return el.days.includes(date.getDay())
             }).filter((el) => {
                 return el.showingIn === "2D"
             })
         )
         setRepertoire3d(
             props.repertoire.filter((el) => {
-                return el.days.includes(day)
+                return el.days.includes(date.getDate())
             }).filter((el) => {
                 return el.showingIn === "3D"
             })
         )
-    }, [day]);
+    }, [date]);
 
     return (
         <div className={" h-full w-full flex flex-col items-stretch justify-evenly text-blue-50 pl-8"}
@@ -46,18 +46,18 @@ export function Showtimes(props: RepertoireProps) {
                 <div className={"flex flex-col pl-8 gap-4"}>
                     <Title text={props.film.title}></Title>
                     <div className={"flex gap-1 "}>
-                        <span>{days[(day)]}</span>
-                        <span>{new Date().getDate()}</span>
-                        <span>{month[new Date().getMonth()]}</span>
-                        <span>{new Date().getFullYear()}</span>
+                        <span>{days[(date.getDay())]}</span>
+                        <span>{date.getDate()}</span>
+                        <span>{month[date.getMonth()]}</span>
+                        <span>{date.getFullYear()}</span>
                     </div>
-                    <DayPicker dayClicked={(day: number) => setDay(day)} key={props.film.id}></DayPicker>
+                    <DayPicker dayClicked={(date: Date) => setDate(date)} key={props.film.id}></DayPicker>
                     <div className={"pt-20 "}>
                         <p className={"text-lg font-bold"}>2D : </p>
                         <div className={"flex gap-2 pb-8 items-center"}>
                             {repertoire2d.map((el) => {
                                 return (
-                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets")}>
+                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id)}>
                                         <TimeTile text={el.time} tag={"2D"} key={el.time}></TimeTile>
                                     </Button>
                                 )

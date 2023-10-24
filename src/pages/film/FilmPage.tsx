@@ -15,7 +15,6 @@ export function FilmPage() {
     const [repertoire, setRepertoire] = useState<Repertoire[]>();
     const [isError, setIsError] = useState(false);
 
-
     useEffect(() => {
         fetch('http://localhost:8000/films/' + params.id)
             .then(response => response.json())
