@@ -14,7 +14,7 @@ export function App() {
                     <Route path={"/dashboard"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
                     <Route path={"/error"} element={<ErrorBoard></ErrorBoard>}/>
-                    <Route path={"/select-tickets/:id"} element={<SelectTickets></SelectTickets>}/>
+                    <Route path={"/select-tickets/:id/:date"} element={<SelectTickets></SelectTickets>}/>
                     <Route path={"*"} element={<Navigate to={'/dashboard'}></Navigate>}></Route>
                 </Routes>
             </div>

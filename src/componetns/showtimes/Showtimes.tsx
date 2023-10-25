@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {Button, ButtonType} from "../common/button/Button";
 import {DayPicker} from "../day-picker/DayPicker";
 import {useDays} from "../../hooks/use-days/use-days";
+import {useMonths} from "../../hooks/useMonths/use-months";
 
 interface RepertoireProps {
     film: Film
@@ -19,7 +20,7 @@ export function Showtimes(props: RepertoireProps) {
     const [repertoire3d, setRepertoire3d] = useState<Repertoire[]>([]);
     const days = useDays();
     const navigate = useNavigate();
-    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const month = useMonths();
 
     useEffect(() => {
         setRepertoire2d(
@@ -57,7 +58,7 @@ export function Showtimes(props: RepertoireProps) {
                         <div className={"flex gap-2 pb-8 items-center"}>
                             {repertoire2d.map((el) => {
                                 return (
-                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id)}>
+                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
                                         <TimeTile text={el.time} tag={"2D"} key={el.time}></TimeTile>
                                     </Button>
                                 )
@@ -67,7 +68,7 @@ export function Showtimes(props: RepertoireProps) {
                         <div className={"flex gap-2 items-center"}>
                             {repertoire3d.map((el) => {
                                 return (
-                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets")}>
+                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
                                         <TimeTile text={el.time} tag={"3D"} key={el.time}></TimeTile>
                                     </Button>
                                 )

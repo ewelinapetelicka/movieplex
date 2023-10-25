@@ -6,6 +6,10 @@ import {Loader} from "../../componetns/common/loader/Loader";
 import {ErrorBoard} from "../error/ErrorBoard";
 import {Film} from "../../models/film/film";
 import {Hall} from "../../models/hall/hall";
+import {useMonths} from "../../hooks/useMonths/use-months";
+import {Title} from "../../componetns/common/title/Title";
+import {Recap} from "../../componetns/recap/Recap";
+import {SeatPicker} from "../../componetns/seat-picker/SeatPicker";
 
 export function SelectTickets() {
     const params = useParams();
@@ -14,6 +18,7 @@ export function SelectTickets() {
     const [hall, setHall] = useState<Hall>();
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
+    const month = useMonths();
 
     useEffect(() => {
         fetch('http://localhost:8000/repertoire/' + params.id)
@@ -28,7 +33,7 @@ export function SelectTickets() {
     }, []);
 
     useEffect(() => {
-        if (!repertoire){
+        if (!repertoire) {
             return;
         }
         fetch('http://localhost:8000/films/' + repertoire.filmId)
@@ -43,7 +48,7 @@ export function SelectTickets() {
     }, [repertoire]);
 
     useEffect(() => {
-        if (!repertoire){
+        if (!repertoire) {
             return;
         }
         fetch('http://localhost:8000/halls/' + repertoire.hallId)
@@ -57,8 +62,6 @@ export function SelectTickets() {
             .catch(error => setIsError(true))
     }, [repertoire]);
 
-
-
     if (!repertoire || !film || !hall) {
         return <Loader></Loader>
     }
@@ -68,18 +71,27 @@ export function SelectTickets() {
     }
 
     return (
-        <div className={"text-blue-50"}>
-
-            <p>{film.title}</p>
-            <p>{film.duration}</p>
-            <p>{film.title}</p>
-            <p>{repertoire.time}</p>
-            <p>{repertoire.showingIn}</p>
-            <p>{repertoire.language}</p>
-            <p>{hall.name}</p>
-            <p className={"text-blue-50"}>{repertoire.time}</p>
+        <div className={"text-blue-50 pl-8"}>
+            <Title text={film.title} key={film.id}></Title>
+            <div className={"flex gap-4"}>
+                <span>{film.duration} min</span>
+                <span>{repertoire.showingIn}</span>
+                <span>{repertoire.language}</span>
+            </div>
+            <div className={"flex gap-2 pt-12"}>
+                <span>{params.date!.slice(8, 10)}</span>
+                <span>{month[parseInt(params.date!.slice(5, 7))]}</span>
+                <span>{params.date?.slice(0, 4)}</span>
+            </div>
+            <div>
+                <span>{repertoire.time}</span>
+                <span>{hall.name}</span>
+            </div>
             <p>TICKETS</p>
-
+            <div className={"flex flex-row justify-between"}>
+                <Recap></Recap>
+                <SeatPicker></SeatPicker>
+            </div>
         </div>
     )
 }
