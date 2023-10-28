@@ -10,7 +10,8 @@ export enum ButtonType {
     BLUE = "blue",
     ORANGE = "orange",
     GRAY = "gray",
-    GRAY_CLICKED = "grayClicked"
+    GRAY_CLICKED = "grayClicked",
+    SEAT="seat"
 }
 
 export function Button(props: ButtonProps) {
@@ -24,6 +25,9 @@ export function Button(props: ButtonProps) {
         }
         if (props.type === ButtonType.GRAY_CLICKED) {
             return "bg-orange-400 text-blue-50 p-2 border-2 border-white font-bold text-lg"
+        }
+        if (props.type === ButtonType.SEAT) {
+            return "bg-orange-400 w-14 h-14 rounded-2xl m-2"
         }
         return "bg-orange-400 text-blue-50 p-3 font-bold text-lg"
     }

@@ -1,7 +1,7 @@
 export function Recap(){
     return(
         <div>
-            test recap
+            <p>test recap</p>
         </div>
     )
 }

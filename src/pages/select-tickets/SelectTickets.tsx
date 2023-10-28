@@ -6,7 +6,7 @@ import {Loader} from "../../componetns/common/loader/Loader";
 import {ErrorBoard} from "../error/ErrorBoard";
 import {Film} from "../../models/film/film";
 import {Hall} from "../../models/hall/hall";
-import {useMonths} from "../../hooks/useMonths/use-months";
+import {useMonths} from "../../hooks/use-months/use-months";
 import {Title} from "../../componetns/common/title/Title";
 import {Recap} from "../../componetns/recap/Recap";
 import {SeatPicker} from "../../componetns/seat-picker/SeatPicker";
@@ -18,7 +18,7 @@ export function SelectTickets() {
     const [hall, setHall] = useState<Hall>();
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
-    const month = useMonths();
+    const months = useMonths();
 
     useEffect(() => {
         fetch('http://localhost:8000/repertoire/' + params.id)
@@ -80,8 +80,8 @@ export function SelectTickets() {
             </div>
             <div className={"flex gap-2 pt-12"}>
                 <span>{params.date!.slice(8, 10)}</span>
-                <span>{month[parseInt(params.date!.slice(5, 7))]}</span>
-                <span>{params.date?.slice(0, 4)}</span>
+                <span>{months[parseInt(params.date!.slice(5, 7))]}</span>
+                <span>{params.date!.slice(0, 4)}</span>
             </div>
             <div>
                 <span>{repertoire.time}</span>
@@ -90,7 +90,7 @@ export function SelectTickets() {
             <p>TICKETS</p>
             <div className={"flex flex-row justify-between"}>
                 <Recap></Recap>
-                <SeatPicker></SeatPicker>
+                <SeatPicker onSetSeat={()=>{}} hall={hall}></SeatPicker>
             </div>
         </div>
     )

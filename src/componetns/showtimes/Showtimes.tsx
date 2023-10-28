@@ -7,11 +7,11 @@ import {useNavigate} from "react-router-dom";
 import {Button, ButtonType} from "../common/button/Button";
 import {DayPicker} from "../day-picker/DayPicker";
 import {useDays} from "../../hooks/use-days/use-days";
-import {useMonths} from "../../hooks/useMonths/use-months";
+import {useMonths} from "../../hooks/use-months/use-months";
 
 interface RepertoireProps {
-    film: Film
-    repertoire: Repertoire[]
+    film: Film;
+    repertoire: Repertoire[];
 }
 
 export function Showtimes(props: RepertoireProps) {
