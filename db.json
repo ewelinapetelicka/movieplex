@@ -756,25 +756,25 @@
       "id": 1,
       "name": "Studio hall",
       "seatColumns": 6,
-      "seatRows": 6
+      "seatRows": 10
     },
     {
       "id": 2,
       "name": "3D hall",
       "seatColumns": 6,
-      "seatRows": 6
+      "seatRows": 10
     },
     {
       "id": 3,
       "name": "First hall",
-      "seatColumns": 14,
-      "seatRows": 11
+      "seatColumns": 11,
+      "seatRows": 14
     },
     {
       "id": 4,
       "name": "Second hall",
-      "seatColumns": 14,
-      "seatRows": 11
+      "seatColumns": 11,
+      "seatRows": 14
     }
   ]
 }

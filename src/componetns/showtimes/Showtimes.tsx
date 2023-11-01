@@ -40,7 +40,7 @@ export function Showtimes(props: RepertoireProps) {
     }, [date]);
 
     return (
-        <div className={" h-full w-full flex flex-col items-stretch justify-evenly text-blue-50 pl-8"}
+        <div className={"h-full w-full flex flex-col items-stretch justify-evenly text-blue-50 pl-8"}
              style={{minHeight: "calc(100vh - 80px)"}}>
             <div className={"flex"}>
                 <img className={"w-[25%] pr-2 pl-2"} src={'/posters/' + props.film.poster}/>

@@ -71,26 +71,29 @@ export function SelectTickets() {
     }
 
     return (
-        <div className={"text-blue-50 pl-8"}>
-            <Title text={film.title} key={film.id}></Title>
-            <div className={"flex gap-4"}>
-                <span>{film.duration} min</span>
-                <span>{repertoire.showingIn}</span>
-                <span>{repertoire.language}</span>
-            </div>
-            <div className={"flex gap-2 pt-12"}>
-                <span>{params.date!.slice(8, 10)}</span>
-                <span>{months[parseInt(params.date!.slice(5, 7))]}</span>
-                <span>{params.date!.slice(0, 4)}</span>
-            </div>
-            <div>
-                <span>{repertoire.time}</span>
-                <span>{hall.name}</span>
-            </div>
-            <p>TICKETS</p>
-            <div className={"flex flex-row justify-between"}>
-                <Recap></Recap>
-                <SeatPicker onSetSeat={()=>{}} hall={hall}></SeatPicker>
+        <div className={" h-full text-blue-50 pl-8"}>
+            <div className={"h-full flex flex-row justify-between"}>
+                <div>
+                    <div>
+                        <Title text={film.title} key={film.id}></Title>
+                        <div className={"flex gap-4"}>
+                            <span>{film.duration} min</span>
+                            <span>{repertoire.showingIn}</span>
+                            <span>{repertoire.language}</span>
+                        </div>
+                        <div className={"flex gap-2 pt-12"}>
+                            <span>{params.date!.slice(8, 10)}</span>
+                            <span>{months[parseInt(params.date!.slice(5, 7))]}</span>
+                            <span>{params.date!.slice(0, 4)}</span>
+                        </div>
+                        <div>
+                            <span>{repertoire.time}</span>
+                            <span>{hall.name}</span>
+                        </div>
+                    </div>
+                    <Recap></Recap>
+                </div>
+                <SeatPicker onSetSeat={()=>{}} hall={hall} key={film.id}></SeatPicker>
             </div>
         </div>
     )

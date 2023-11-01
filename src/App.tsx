@@ -7,9 +7,9 @@ import {SelectTickets} from "./pages/select-tickets/SelectTickets";
 
 export function App() {
     return (
-        <div className={'h-screen w-full flex flex-col'}>
+        <div className={'h-1 min-h-screen w-full flex flex-col '}>
             <Header></Header>
-            <div className={"grow bg-gray-900 pt-20"}>
+            <div className={"h-full grow pt-20"}>
                 <Routes>
                     <Route path={"/dashboard"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
