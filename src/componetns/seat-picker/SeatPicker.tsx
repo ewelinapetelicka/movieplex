@@ -1,16 +1,17 @@
 import {Button, ButtonType} from "../common/button/Button";
 import {Hall} from "../../models/hall/hall";
 import {useState} from "react";
+import {Seat} from "../../models/seat/seat";
 
 interface SeatPickerProps {
-    onSetSeat: () => void;
+    onSetSeat: (seat:Seat) => void;
+    seatPicked: Seat[];
     hall: Hall;
 }
 
 export function SeatPicker(props: SeatPickerProps) {
     const [cols] = useState(new Array(props.hall.seatColumns).fill(null));
     const [rows] = useState(new Array(props.hall.seatRows).fill(null));
-
 
     return (
         <div className={"w-1/2 h-full flex flex-col justify-center items-center"}>
@@ -19,13 +20,16 @@ export function SeatPicker(props: SeatPickerProps) {
                 SCREEN
             </div>
             <div>
-                {cols.map((el, index) => {
+                {cols.map((el, colI) => {
                     return (
-                        <div key={index} className={"flex justify-center "}>
-                            {rows.map((el, index) => {
+                        <div key={colI} className={"flex justify-center "}>
+                            {rows.map((el, rowI) => {
                                 return (
-                                    <Button type={ButtonType.SEAT} key={index} onClick={() => {
-                                        props.onSetSeat()
+                                    <Button type={props.seatPicked.find((el) => el.row === rowI && el.col === colI) ? ButtonType.SEAT_TAKEN : ButtonType.SEAT} key={rowI} onClick={() => {
+                                        props.onSetSeat({
+                                            row: rowI,
+                                            col: colI
+                                        })
                                     }}>
                                     </Button>
                                 )
@@ -33,7 +37,7 @@ export function SeatPicker(props: SeatPickerProps) {
                             })}
                             <Button type={ButtonType.DISABLED} onClick={() => {
                             }}>
-                                {String.fromCharCode(index + 65)}
+                                {String.fromCharCode(colI + 65)}
                             </Button>
                         </div>
                     )

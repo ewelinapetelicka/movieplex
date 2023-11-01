@@ -10,6 +10,7 @@ import {useMonths} from "../../hooks/use-months/use-months";
 import {Title} from "../../componetns/common/title/Title";
 import {Recap} from "../../componetns/recap/Recap";
 import {SeatPicker} from "../../componetns/seat-picker/SeatPicker";
+import {Seat} from "../../models/seat/seat";
 
 export function SelectTickets() {
     const params = useParams();
@@ -19,6 +20,7 @@ export function SelectTickets() {
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const months = useMonths();
+    const [seatPicked, setSeatPicked] = useState<Seat[]>([]);
 
     useEffect(() => {
         fetch('http://localhost:8000/repertoire/' + params.id)
@@ -93,7 +95,25 @@ export function SelectTickets() {
                     </div>
                     <Recap></Recap>
                 </div>
-                <SeatPicker onSetSeat={()=>{}} hall={hall} key={film.id}></SeatPicker>
+                <SeatPicker seatPicked={seatPicked}
+                            onSetSeat={(seat: Seat) => {
+                                const isPicked = !!seatPicked.find((el)=>{
+                                    return el.row === seat.row && el.col === seat.col
+                                })
+
+                                if (isPicked) {
+                                    setSeatPicked(seatPicked.filter((el) => {
+                                        return el.row !== seat.row || el.col !== seat.col
+                                    }))
+                                } else {
+                                    setSeatPicked([
+                                        ...seatPicked,
+                                        seat
+                                    ])
+                                }
+                            }}
+                            hall={hall}
+                            key={film.id}></SeatPicker>
             </div>
         </div>
     )
