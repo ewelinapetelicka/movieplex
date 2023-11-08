@@ -22,7 +22,7 @@ export function SeatPicker(props: SeatPickerProps) {
             <div>
                 {cols.map((el, colI) => {
                     return (
-                        <div key={colI} className={"flex justify-center "}>
+                        <div key={colI} className={"flex justify-center"}>
                             {rows.map((el, rowI) => {
                                 return (
                                     <Button type={props.seatPicked.find((el) => el.row === rowI && el.col === colI) ? ButtonType.SEAT_TAKEN : ButtonType.SEAT} key={rowI} onClick={() => {
@@ -33,7 +33,6 @@ export function SeatPicker(props: SeatPickerProps) {
                                     }}>
                                     </Button>
                                 )
-
                             })}
                             <Button type={ButtonType.DISABLED} onClick={() => {
                             }}>
@@ -51,14 +50,18 @@ export function SeatPicker(props: SeatPickerProps) {
                     )
                 })}
             </div>
-            <div>
-                <div>
+            <div className={"flex justify-center items-center gap-3 "}>
+                <div className={"flex justify-center items-center "}>
                     <span>AVAILABLE - </span>
                     <Button type={ButtonType.SEAT} onClick={() => {}}></Button>
                 </div>
-                <div>
+                <div className={"flex justify-center items-center "}>
                     <span>RESERVED - </span>
-                    <Button type={ButtonType.SEAT} onClick={() => {}}></Button>
+                    <Button type={ButtonType.SEAT_CHOSEN} onClick={() => {}}></Button>
+                </div>
+                <div className={"flex justify-center items-center "}>
+                    <span>CHOSEN - </span>
+                    <Button type={ButtonType.SEAT_TAKEN} onClick={() => {}}></Button>
                 </div>
             </div>
         </div>

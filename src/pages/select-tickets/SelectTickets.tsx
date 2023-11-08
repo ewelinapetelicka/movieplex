@@ -75,32 +75,29 @@ export function SelectTickets() {
     return (
         <div className={" h-full text-blue-50 pl-8"}>
             <div className={"h-full flex flex-row justify-between"}>
-                <div>
-                    <div>
+                <div className={"w-9/12 pr-6"}>
+                    <div className={"flex flex-col gap-3"}>
                         <Title text={film.title} key={film.id}></Title>
                         <div className={"flex gap-4"}>
                             <span>{film.duration} min</span>
                             <span>{repertoire.showingIn}</span>
                             <span>{repertoire.language}</span>
                         </div>
-                        <div className={"flex gap-2 pt-12"}>
+                        <div className={"flex gap-2 "}>
                             <span>{params.date!.slice(8, 10)}</span>
                             <span>{months[parseInt(params.date!.slice(5, 7))]}</span>
                             <span>{params.date!.slice(0, 4)}</span>
-                        </div>
-                        <div>
                             <span>{repertoire.time}</span>
                             <span>{hall.name}</span>
                         </div>
                     </div>
-                    <Recap></Recap>
+                    <Recap seatPicked={seatPicked}></Recap>
                 </div>
                 <SeatPicker seatPicked={seatPicked}
                             onSetSeat={(seat: Seat) => {
                                 const isPicked = !!seatPicked.find((el)=>{
                                     return el.row === seat.row && el.col === seat.col
                                 })
-
                                 if (isPicked) {
                                     setSeatPicked(seatPicked.filter((el) => {
                                         return el.row !== seat.row || el.col !== seat.col
