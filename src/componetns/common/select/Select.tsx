@@ -22,17 +22,17 @@ export function Select(props: SelectProps) {
     }
 
     return (
-        <div className={"relative"} ref={wrapperRef}>
+        <div className={"relative text-gray-200 bg-gray-800 cursor-pointer rounded-lg border-2 border-gray-600 p-1"} ref={wrapperRef}>
             <span onClick={() => {
                 setIsVisible(true)
             }}>{currentValue}</span>
-            {isVisible ? <div className={"absolute z-20 mt-3 bg-amber-100"}>
+            {isVisible ? <div className={"absolute z-20 mt-3 bg-gray-800 text-gray-200"}>
                 {props.options.map((el) => {
                     return (
                         <div onClick={() => {
                             changeValue(el)
                         }}
-                             className={"text-cyan-950 " + (currentValue === el ? "bg-amber-400" : "")}
+                             className={"text-gray-200 " + (currentValue === el ? "bg-gray-700" : "")}
                         >{el}
                         </div>)
                 })}

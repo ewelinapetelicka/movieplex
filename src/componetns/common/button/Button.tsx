@@ -41,7 +41,7 @@ export function Button(props: ButtonProps) {
             return "bg-gray-700 w-9 h-9 rounded-2xl m-2"
         }
         if (props.type === ButtonType.DELETE) {
-            return "bg-gray-700 w-9 h-9 rounded-2xl m-2"
+            return "bg-gray-800 w-9 h-9 rounded-2xl m-2"
         }
         if (props.type === ButtonType.DISABLED){
             return "w-9 h-9 rounded-2xl m-2 opacity-25 font-bold"

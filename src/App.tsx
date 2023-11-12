@@ -4,6 +4,7 @@ import {Header} from "./componetns/core/header/Header";
 import {FilmPage} from "./pages/film/FilmPage";
 import {ErrorBoard} from "./pages/error/ErrorBoard";
 import {SelectTickets} from "./pages/select-tickets/SelectTickets";
+import {Payment} from "./pages/payment/Payment";
 
 export function App() {
     return (
@@ -15,6 +16,7 @@ export function App() {
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
                     <Route path={"/error"} element={<ErrorBoard></ErrorBoard>}/>
                     <Route path={"/select-tickets/:id/:date"} element={<SelectTickets></SelectTickets>}/>
+                    <Route path={"/payment"} element={<Payment></Payment>}/>
                     <Route path={"*"} element={<Navigate to={'/dashboard'}></Navigate>}></Route>
                 </Routes>
             </div>
