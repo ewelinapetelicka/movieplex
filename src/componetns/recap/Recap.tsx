@@ -3,9 +3,11 @@ import {Card} from "../common/card/Card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {Select} from "../common/select/Select";
+import {Button, ButtonType} from "../common/button/Button";
 
 interface SeatPickedProps {
     seatPicked: Seat[];
+    onSeatRemoved: (seat:Seat) => void;
 }
 
 export function Recap(props: SeatPickedProps) {
@@ -24,7 +26,9 @@ export function Recap(props: SeatPickedProps) {
                                 <Select initValue={"NORMAL"} options={["KID", "SENIOR", "NORMAL"]}></Select>
                                 <div>
                                     <span className={"pr-3"}>: 12 $</span>
-                                    <FontAwesomeIcon icon={faTrashCan}/>
+                                    <Button type={ButtonType.DELETE} key={index} onClick={() => {
+                                        props.onSeatRemoved(el)
+                                    }}><FontAwesomeIcon icon={faTrashCan}/></Button>
                                 </div>
                             </div>
                         </Card>

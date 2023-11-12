@@ -91,11 +91,17 @@ export function SelectTickets() {
                             <span>{hall.name}</span>
                         </div>
                     </div>
-                    <Recap seatPicked={seatPicked}></Recap>
+                    <Recap seatPicked={seatPicked} onSeatRemoved={(seat) => {
+                        let newArr = [];
+                        newArr = seatPicked.filter((el) => {
+                            return el.row !== seat.row || el.col !== seat.col;
+                        })
+                        setSeatPicked(newArr)
+                    }}></Recap>
                 </div>
                 <SeatPicker seatPicked={seatPicked}
                             onSetSeat={(seat: Seat) => {
-                                const isPicked = !!seatPicked.find((el)=>{
+                                const isPicked = !!seatPicked.find((el) => {
                                     return el.row === seat.row && el.col === seat.col
                                 })
                                 if (isPicked) {

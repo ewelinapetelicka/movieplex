@@ -14,6 +14,7 @@ export enum ButtonType {
     SEAT="seat",
     SEAT_TAKEN="taken",
     SEAT_CHOSEN="chosen",
+    DELETE="delete",
     DISABLED = "disabled",
 
 }
@@ -37,6 +38,9 @@ export function Button(props: ButtonProps) {
             return "bg-sky-700 w-9 h-9 rounded-2xl m-2"
         }
         if (props.type === ButtonType.SEAT_CHOSEN) {
+            return "bg-gray-700 w-9 h-9 rounded-2xl m-2"
+        }
+        if (props.type === ButtonType.DELETE) {
             return "bg-gray-700 w-9 h-9 rounded-2xl m-2"
         }
         if (props.type === ButtonType.DISABLED){
