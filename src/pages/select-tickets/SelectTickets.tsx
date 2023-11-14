@@ -97,6 +97,16 @@ export function SelectTickets() {
                             return el.row !== seat.row || el.col !== seat.col;
                         })
                         setSeatPicked(newArr)
+                    }}
+                    onSeatType={(seat, seatType)=> {
+                        let newArray = seatPicked.map((el)=>{
+                            if (seat === el) {
+                                el.type = seatType;
+                            }
+                            return el;
+                        })
+                        setSeatPicked(newArray)
+
                     }}></Recap>
                 </div>
                 <SeatPicker seatPicked={seatPicked}

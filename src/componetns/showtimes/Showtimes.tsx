@@ -32,7 +32,7 @@ export function Showtimes(props: RepertoireProps) {
         )
         setRepertoire3d(
             props.repertoire.filter((el) => {
-                return el.days.includes(date.getDate())
+                return el.days.includes(date.getDay())
             }).filter((el) => {
                 return el.showingIn === "3D"
             })
@@ -56,20 +56,20 @@ export function Showtimes(props: RepertoireProps) {
                     <div className={"pt-20 "}>
                         <p className={"text-lg font-bold"}>2D : </p>
                         <div className={"flex gap-2 pb-8 items-center"}>
-                            {repertoire2d.map((el) => {
+                            {repertoire2d.map((el,index) => {
                                 return (
                                     <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
-                                        <TimeTile text={el.time} tag={"2D"} key={el.time}></TimeTile>
+                                        <TimeTile text={el.time} tag={"2D"} key={index}></TimeTile>
                                     </Button>
                                 )
                             })}
                         </div>
                         <p className={"text-lg font-bold"}>3D : </p>
                         <div className={"flex gap-2 items-center"}>
-                            {repertoire3d.map((el) => {
+                            {repertoire3d.map((el, index) => {
                                 return (
                                     <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
-                                        <TimeTile text={el.time} tag={"3D"} key={el.time}></TimeTile>
+                                        <TimeTile text={el.time} tag={"3D"} key={index}></TimeTile>
                                     </Button>
                                 )
                             })}

@@ -2,6 +2,7 @@ import {Button, ButtonType} from "../common/button/Button";
 import {Hall} from "../../models/hall/hall";
 import {useState} from "react";
 import {Seat} from "../../models/seat/seat";
+import {SeatType} from "../../models/seat/seat-type/seat-type";
 
 interface SeatPickerProps {
     onSetSeat: (seat:Seat) => void;
@@ -28,7 +29,8 @@ export function SeatPicker(props: SeatPickerProps) {
                                     <Button type={props.seatPicked.find((el) => el.row === rowI && el.col === colI) ? ButtonType.SEAT_TAKEN : ButtonType.SEAT} key={rowI} onClick={() => {
                                         props.onSetSeat({
                                             row: rowI,
-                                            col: colI
+                                            col: colI,
+                                            type: SeatType.NORMAL
                                         })
                                     }}>
                                     </Button>

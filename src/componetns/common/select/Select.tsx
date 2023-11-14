@@ -4,6 +4,7 @@ import {useClickOutside} from "../../../hooks/click-outside/click-outside";
 interface SelectProps {
     initValue: string;
     options: string[];
+    onOptionChange: (newValue : string)=>void;
 }
 
 export function Select(props: SelectProps) {
@@ -12,6 +13,7 @@ export function Select(props: SelectProps) {
 
     const wrapperRef = useRef(null);
 
+
     useClickOutside(wrapperRef, () => {
         setIsVisible(false)
     });
@@ -19,6 +21,7 @@ export function Select(props: SelectProps) {
     function changeValue(newValue: string) {
         setCurrentValue(newValue);
         setIsVisible(false);
+        props.onOptionChange(newValue);
     }
 
     return (

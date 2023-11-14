@@ -5,14 +5,38 @@ import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {Select} from "../common/select/Select";
 import {Button, ButtonType} from "../common/button/Button";
 import {useNavigate} from "react-router-dom";
+import {SeatType} from "../../models/seat/seat-type/seat-type";
+import {stringify} from "querystring";
 
 interface SeatPickedProps {
     seatPicked: Seat[];
+    onSeatType: (seat: Seat, ti: SeatType) => void;
     onSeatRemoved: (seat: Seat) => void;
 }
 
 export function Recap(props: SeatPickedProps) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    function seatPrice(seatType: SeatType): number {
+        if (seatType === SeatType.NORMAL) {
+            return 12;
+        }
+        if (seatType === SeatType.KID) {
+            return 6;
+        }
+        if (seatType === SeatType.SENIOR) {
+            return 8;
+        }
+        return 0;
+    }
+
+    function total(): number {
+        let sum = 0;
+        for (let i = 0; i < props.seatPicked.length; i++) {
+            sum = sum + seatPrice(props.seatPicked[i].type)
+        }
+        return sum;
+    }
 
     return (
         <div className={"h-3/5"}>
@@ -27,10 +51,13 @@ export function Recap(props: SeatPickedProps) {
                                         <span>{String.fromCharCode(el.col + 65)}</span>
                                         <span>{el.row + 1}</span>
                                     </div>
-                                    <Select initValue={"NORMAL"} options={["KID", "SENIOR", "NORMAL"]}></Select>
+                                    <Select initValue={"NORMAL"} options={["KID", "SENIOR", "NORMAL"]}
+                                            onOptionChange={(ticketType) => {
+                                                props.onSeatType(el, ticketType as any)
+                                            }}></Select>
                                 </div>
                                 <div className={"flex justify-between items-center"}>
-                                    <span className={"pr-3"}>: 12 $</span>
+                                    <span className={"pr-3"}>: {seatPrice(el.type)} $</span>
                                     <Button type={ButtonType.DELETE} key={index} onClick={() => {
                                         props.onSeatRemoved(el)
                                     }}><FontAwesomeIcon icon={faTrashCan}/></Button>
@@ -40,9 +67,16 @@ export function Recap(props: SeatPickedProps) {
                     )
                 })}
             </div>
-            <Button type={ButtonType.ORANGE} onClick={() => {
-                navigate("/payment")
-            }}>NEXT</Button>
+            <div className={"flex justify-between items-center"}>
+                <div>TOTAL COST: <b>{total().toFixed(2)}</b>$</div>
+                <div>{total() === 0 ? (
+                    <Button type={ButtonType.DISABLED} onClick={() => {
+                        navigate("/payment")
+                    }}>NEXT</Button>
+                ) : <Button type={ButtonType.ORANGE} onClick={() => {
+                    navigate("/payment")
+                }}>NEXT</Button>}</div>
+            </div>
         </div>
     )
 }
