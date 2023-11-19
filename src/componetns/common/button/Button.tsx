@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 interface ButtonProps {
     children?: ReactNode;
     type: ButtonType;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export enum ButtonType {
@@ -16,6 +16,7 @@ export enum ButtonType {
     SEAT_CHOSEN="chosen",
     DELETE="delete",
     DISABLED = "disabled",
+    PAYMENT = "payment"
 
 }
 
@@ -45,6 +46,9 @@ export function Button(props: ButtonProps) {
         }
         if (props.type === ButtonType.DISABLED){
             return "w-9 h-9 rounded-2xl m-2 opacity-25 font-bold"
+        }
+        if (props.type === ButtonType.PAYMENT) {
+            return "w-40 h-12 bg-sky-700 text-blue-50 p-1 border-2 border-white font-bold text-lg"
         }
         return "bg-orange-400 text-blue-50 p-3 font-bold text-lg"
     }

@@ -6,7 +6,6 @@ import {Select} from "../common/select/Select";
 import {Button, ButtonType} from "../common/button/Button";
 import {useNavigate} from "react-router-dom";
 import {SeatType} from "../../models/seat/seat-type/seat-type";
-import {stringify} from "querystring";
 
 interface SeatPickedProps {
     seatPicked: Seat[];
@@ -70,12 +69,14 @@ export function Recap(props: SeatPickedProps) {
             <div className={"flex justify-between items-center"}>
                 <div>TOTAL COST: <b>{total().toFixed(2)}</b>$</div>
                 <div>{total() === 0 ? (
-                    <Button type={ButtonType.DISABLED} onClick={() => {
-                        navigate("/payment")
-                    }}>NEXT</Button>
+                    <Button type={ButtonType.DISABLED}>NEXT</Button>
                 ) : <Button type={ButtonType.ORANGE} onClick={() => {
-                    navigate("/payment")
-                }}>NEXT</Button>}</div>
+                    navigate("/payment", {state: {
+                        cost: total(),
+                            seats : props.seatPicked,
+
+                        }})
+                }}>PAYMENT</Button>}</div>
             </div>
         </div>
     )

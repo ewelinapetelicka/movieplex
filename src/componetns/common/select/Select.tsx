@@ -30,9 +30,9 @@ export function Select(props: SelectProps) {
                 setIsVisible(true)
             }}>{currentValue}</span>
             {isVisible ? <div className={"absolute z-20 mt-3 bg-gray-800 text-gray-200"}>
-                {props.options.map((el) => {
+                {props.options.map((el, index) => {
                     return (
-                        <div onClick={() => {
+                        <div key={index} onClick={() => {
                             changeValue(el)
                         }}
                              className={"text-gray-200 " + (currentValue === el ? "bg-gray-700" : "")}

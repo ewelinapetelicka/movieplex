@@ -46,7 +46,7 @@ export function SeatPicker(props: SeatPickerProps) {
                 {rows.map((el, index) => {
                     return (
                         <Button type={ButtonType.DISABLED} onClick={() => {
-                        }}>
+                        }} key={index}>
                             {index + 1}
                         </Button>
                     )

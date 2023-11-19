@@ -776,5 +776,17 @@
       "seatColumns": 11,
       "seatRows": 14
     }
+  ],
+  "vouchers": [
+    {
+      "name": "valentine14",
+      "discount": 0.86
+    },{
+      "name": "santa10",
+      "discount": 0.90
+    },{
+      "name": "WBSXH",
+      "discount": 0.75
+    }
   ]
 }

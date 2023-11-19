@@ -58,7 +58,7 @@ export function Showtimes(props: RepertoireProps) {
                         <div className={"flex gap-2 pb-8 items-center"}>
                             {repertoire2d.map((el,index) => {
                                 return (
-                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
+                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))} key={index}>
                                         <TimeTile text={el.time} tag={"2D"} key={index}></TimeTile>
                                     </Button>
                                 )
@@ -68,7 +68,7 @@ export function Showtimes(props: RepertoireProps) {
                         <div className={"flex gap-2 items-center"}>
                             {repertoire3d.map((el, index) => {
                                 return (
-                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))}>
+                                    <Button type={ButtonType.ORANGE} onClick={() => navigate("/select-tickets/" + el.id + "/" + date.toISOString().slice(0,10))} key={index}>
                                         <TimeTile text={el.time} tag={"3D"} key={index}></TimeTile>
                                     </Button>
                                 )
