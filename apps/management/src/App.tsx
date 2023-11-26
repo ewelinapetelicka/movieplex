@@ -7,7 +7,7 @@ import {Dashboard} from "./components/pages/dashboard/Dashboard";
 
 export function App() {
     const divStyle = {height: 'calc(100vh - 5rem)'}
-    const routesStyle = {width: 'calc(100vw - 14rem)'}
+    const routesStyle = {width: 'calc(100vw - 10rem)'}
 
     return (
         <PrimeReactProvider>
@@ -17,6 +17,7 @@ export function App() {
                 <div style={routesStyle} className={"overflow-y-auto"}>
                     <Routes>
                     <Route path={"/dashboard"} element={<Dashboard></Dashboard>}/>
+                    <Route path={"/hall"} element={<Dashboard></Dashboard>}/>
                 </Routes>
                 </div>
             </div>
