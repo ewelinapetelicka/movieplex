@@ -6,7 +6,7 @@ import {useLocation} from "react-router";
 import {SeatType} from "../../models/seat/seat-type/seat-type";
 import {Seat} from "../../models/seat/seat";
 import {ReactNode, useState} from "react";
-import {Voucher} from "../../models/vouher/voucher";
+import {Voucher} from "../../models/voucher/voucher";
 
 export function Payment() {
     const data = useLocation();
