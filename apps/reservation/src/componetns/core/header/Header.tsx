@@ -12,7 +12,7 @@ export function Header() {
         <div className={"bg-sky-700 h-20 flex items-center text-3xl pl-10 pr-10 justify-between fixed w-full"}>
             <div>
                 <FontAwesomeIcon icon={faTicket} className={"rotate-45 pr-2 text-blue-50 "}/>
-                <button onClick={event => navigate("/dashboard")}>
+                <button onClick={event => navigate("/dashboard-page")}>
                     <h2 className={"text-blue-50 font-extrabold"}>
                         <span className={"text-orange-400"}>MOVIE</span>
                         PLEX

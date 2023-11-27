@@ -5,8 +5,8 @@ import {useLocation, useNavigate} from "react-router";
 const options = [
     {name: 'Film', nav: '/film'},
     {name: 'Repertoire', nav: '/repertoire'},
-    {name: 'Hall', nav: '/hall'},
-    {name: 'Voucher', nav: '/voucher'}
+    {name: 'Hall', nav: '/hall-page'},
+    {name: 'Voucher', nav: '/voucher-page'}
 ];
 
 export function Menu() {

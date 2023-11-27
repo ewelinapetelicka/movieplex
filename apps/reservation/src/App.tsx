@@ -12,12 +12,12 @@ export function App() {
             <Header></Header>
             <div className={"h-full grow pt-20"}>
                 <Routes>
-                    <Route path={"/dashboard"} element={<DashboardPage></DashboardPage>}/>
+                    <Route path={"/dashboard-page"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
                     <Route path={"/error"} element={<ErrorBoard></ErrorBoard>}/>
                     <Route path={"/select-tickets/:id/:date"} element={<SelectTickets></SelectTickets>}/>
                     <Route path={"/payment"} element={<Payment></Payment>}/>
-                    <Route path={"*"} element={<Navigate to={'/dashboard'}></Navigate>}></Route>
+                    <Route path={"*"} element={<Navigate to={'/dashboard-page'}></Navigate>}></Route>
                 </Routes>
             </div>
         </div>
