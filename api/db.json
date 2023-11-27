@@ -450,7 +450,8 @@
         3,
         5
       ]
-    },{
+    },
+    {
       "id": 21,
       "filmId": 5,
       "hallId": 1,
@@ -779,12 +780,17 @@
   ],
   "vouchers": [
     {
+      "id": 1,
       "name": "valentine14",
       "discount": 0.86
-    },{
+    },
+    {
+      "id": 2,
       "name": "santa10",
       "discount": 0.90
-    },{
+    },
+    {
+      "id": 3,
       "name": "WBSXH",
       "discount": 0.75
     }
