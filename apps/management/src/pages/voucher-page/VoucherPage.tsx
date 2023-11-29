@@ -1,16 +1,19 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Voucher} from "../../models/voucher/voucher";
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {Button} from "primereact/button";
 import {AddVoucherModal} from "./components/add-voucher-modal/AddVoucherModal";
 import {EditVoucherModal} from "./components/edit-voucher-modal/EditVoucherModal";
+import {Toast} from "primereact/toast";
+import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 
 export function VoucherPage() {
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
     const [editableVoucher, setEditableVoucher] = useState<Voucher>();
     const [isAdding, setIsAdding] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
+    const toast = useRef<Toast>(null);
 
     useEffect(() => {
         refreshVouchers()
@@ -29,6 +32,9 @@ export function VoucherPage() {
             method: 'DELETE',
         }).then(() => {
             setVouchers(vouchers.filter((voucher) => voucher.id !== id));
+            if (toast.current) {
+                toast!.current.show({severity: 'info', summary: 'info', detail: 'Voucher deleted', life: 3000});
+            }
         });
     }
 
@@ -50,9 +56,17 @@ export function VoucherPage() {
                                 setIsEditable(true);
                                 setEditableVoucher(voucher);
                             }}/>
-                            <Button label={"Delete"} className={"p-button-danger"} onClick={() => {
-                                deleteVoucher(voucher.id)
-                            }}/>
+                            <Button label={"Delete"} className={"p-button-danger"}
+                                    onClick={() => {
+                                        confirmDialog({
+                                            message: 'Are you sure you want to delete voucher?',
+                                            header: 'Confirmation',
+                                            icon: 'pi pi-exclamation-triangle',
+                                            accept: () => deleteVoucher(voucher.id),
+                                            reject: () => {
+                                            }
+                                        });
+                                    }}/>
                         </div>
                     )
                 }}>
@@ -62,6 +76,8 @@ export function VoucherPage() {
                              onHide={() => setIsAdding(false)}/>
             <EditVoucherModal visible={isEditable} onHide={() => setIsEditable(false)}
                               onVoucherEdited={() => refreshVouchers()} voucher={editableVoucher}/>
+            <Toast ref={toast}/>
+            <ConfirmDialog/>
         </div>
     );
 }
