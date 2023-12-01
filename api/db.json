@@ -27,8 +27,7 @@
         " Finn Donovan",
         " Aurora Blake",
         " Sebastian Hayes"
-      ],
-      "isAvailable": true
+      ]
     },
     {
       "id": 2,
@@ -55,8 +54,7 @@
         " Oliver Sterling",
         " Isabella Reed",
         " Maxon Hart"
-      ],
-      "isAvailable": true
+      ]
     },
     {
       "id": 3,
@@ -84,8 +82,7 @@
         " Ethan Reed",
         " Mia Lawson",
         " Benjamin Clarke"
-      ],
-      "isAvailable": true
+      ]
     },
     {
       "id": 4,
@@ -111,8 +108,7 @@
         " Ethan Sullivan",
         " Benjamin Carter",
         " Noah Bennett"
-      ],
-      "isAvailable": true
+      ]
     },
     {
       "id": 5,
@@ -141,33 +137,29 @@
         " Lucas Mosswood",
         " Ava Fernleaf",
         " Benjamin Bramblethorn"
-      ],
-      "isAvailable": true
+      ]
+    }
+  ],
+  "teasers": [
+    {
+      "id": 1,
+      "poster": "dinosaurs.jpg"
     },
     {
-      "id": 6,
-      "poster": "dinosaurs.jpg",
-      "isAvailable": false
+      "id": 2,
+      "poster": "devil.jpg"
     },
     {
-      "id": 7,
-      "poster": "devil.jpg",
-      "isAvailable": false
+      "id": 3,
+      "poster": "elf.jpg"
     },
     {
-      "id": 8,
-      "poster": "elf.jpg",
-      "isAvailable": false
+      "id": 4,
+      "poster": "romance.jpg"
     },
     {
-      "id": 9,
-      "poster": "romance.jpg",
-      "isAvailable": false
-    },
-    {
-      "id": 10,
-      "poster": "western.jpg",
-      "isAvailable": false
+      "id": 5,
+      "poster": "western.jpg"
     }
   ],
   "repertoire": [

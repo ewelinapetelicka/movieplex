@@ -1,11 +1,11 @@
-export interface Film{
+export interface Film {
     id: number;
     poster: string;
     trailer: string;
-    title:string;
+    title: string;
     director: string;
-    studio:string
-    description : string;
+    studio: string
+    description: string;
     genre: string[];
     duration: number;
     language: string;
@@ -13,5 +13,4 @@ export interface Film{
     production: string;
     releaseDate: string;
     cast: string[];
-    isAvailable: boolean;
 }

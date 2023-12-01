@@ -13,5 +13,4 @@ export interface Film{
     production: string;
     releaseDate: string;
     cast: string[];
-    isAvailable: boolean;
 }

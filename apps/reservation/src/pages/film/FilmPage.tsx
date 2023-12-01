@@ -19,7 +19,7 @@ export function FilmPage() {
         fetch('http://localhost:8000/films/' + params.id)
             .then(response => response.json())
             .then((data: Film) => {
-                if (!data.isAvailable) {
+                if (!data) {
                     navigate("/error")
                 }
                 setFilm(data)
