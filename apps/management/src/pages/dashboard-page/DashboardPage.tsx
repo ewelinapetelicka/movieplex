@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
 import {Voucher} from "../../models/voucher/voucher";
 import {DashboardCardWidget} from "./components/dashboard-card-widget/DashboardCardWidget";
+import {useNavigate} from "react-router";
 
 export function DashboardPage() {
     const [availableFilms, setAvailableFilms] = useState<Film[]>([]);
     const [unavailableFilms, setUnavailableFilms] = useState<Film[]>([]);
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getFilms();
@@ -35,15 +37,18 @@ export function DashboardPage() {
             <DashboardCardWidget
                 title={"Vouchers"}
                 value={vouchers.length}
-                icon={"pi pi-ticket"}/>
+                icon={"pi pi-ticket"}
+                onClick={() => navigate('/voucher-page')}/>
             <DashboardCardWidget
                 title={"Now playing"}
                 icon={"pi pi-video"}
-                value={availableFilms.length}/>
+                value={availableFilms.length}
+                onClick={() => navigate('/films-page')}/>
             <DashboardCardWidget
                 title={"Coming soon"}
                 icon={"pi pi-calendar"}
-                value={unavailableFilms.length}/>
+                value={unavailableFilms.length}
+                onClick={() => navigate("/films-page")}/>
         </div>
     )
 }

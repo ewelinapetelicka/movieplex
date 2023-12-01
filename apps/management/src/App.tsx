@@ -5,6 +5,7 @@ import {Header} from "./components/core/header/Header";
 import {Menu} from "./components/core/menu/Menu";
 import {DashboardPage} from "./pages/dashboard-page/DashboardPage";
 import {VoucherPage} from "./pages/voucher-page/VoucherPage";
+import {FilmPage} from "./pages/film-page/FilmPage";
 
 export function App() {
     const divStyle = {height: 'calc(100vh - 5rem)'}
@@ -20,9 +21,10 @@ export function App() {
                     <Route path={"/dashboard-page"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/hall-page"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/voucher-page"} element={<VoucherPage></VoucherPage>}/>
+                    <Route path={"/films-page"} element={<FilmPage></FilmPage>}/>
                 </Routes>
                 </div>
             </div>
         </PrimeReactProvider>
-    );
+    )
 }
