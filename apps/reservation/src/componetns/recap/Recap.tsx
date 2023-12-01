@@ -74,7 +74,6 @@ export function Recap(props: SeatPickedProps) {
                     navigate("/payment", {state: {
                         cost: total(),
                             seats : props.seatPicked,
-
                         }})
                 }}>PAYMENT</Button>}</div>
             </div>

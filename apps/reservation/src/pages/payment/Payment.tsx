@@ -32,7 +32,7 @@ export function Payment() {
             .then((httpResponse) => httpResponse.json())
             .then((vouchers: Voucher[]) => {
                     if (vouchers.length !== 0) {
-                        setTotal((data.state.cost * vouchers[0].discount) + 2);
+                        setTotal((data.state.cost * ((100 - vouchers[0].discount)/ 100)) + 2);
                         setHasVoucherApplied(true);
                     } else {
                         setHasAlert(true)

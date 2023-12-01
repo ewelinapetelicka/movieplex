@@ -1,6 +1,6 @@
 import {Sidebar} from "primereact/sidebar";
 import {Button} from "primereact/button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 interface AddVoucherModalProps {
     visible: boolean;
@@ -11,6 +11,11 @@ interface AddVoucherModalProps {
 export function AddVoucherModal(props: AddVoucherModalProps) {
     const [addNameVoucher, setAddNameVoucher] = useState<string>();
     const [addDiscountVoucher, setAddDiscountVoucher] = useState<number>();
+
+    useEffect(() => {
+        setAddDiscountVoucher(0);
+        setAddNameVoucher("");
+    }, [props.visible]);
 
     function addVoucher() {
         fetch('http://localhost:8000/vouchers/', {

@@ -782,16 +782,16 @@
     {
       "id": 2,
       "name": "SANTA",
-      "discount": 0.88
+      "discount": 50
     },
     {
       "id": 3,
       "name": "zsdfrxd",
-      "discount": 0.99
+      "discount": 20
     },
     {
       "name": "valentine14",
-      "discount": 0.86,
+      "discount": 14,
       "id": 4
     }
   ]
