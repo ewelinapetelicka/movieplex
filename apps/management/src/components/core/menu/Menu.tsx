@@ -3,7 +3,9 @@ import React, {useState} from "react";
 import {useLocation, useNavigate} from "react-router";
 
 const options = [
-    {name: 'Film', nav: '/film'},
+    {name: 'Dashboard', nav: '/dashboard-page'},
+    {name: 'Film', nav: '/films-page'},
+    {name: 'Teaser', nav: '/teasers-page'},
     {name: 'Repertoire', nav: '/repertoire'},
     {name: 'Hall', nav: '/hall-page'},
     {name: 'Voucher', nav: '/voucher-page'}
