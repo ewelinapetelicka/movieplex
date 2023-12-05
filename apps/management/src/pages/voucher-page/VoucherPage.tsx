@@ -39,7 +39,7 @@ export function VoucherPage() {
     }
 
     return (
-        <div className={"flex flex-column justify-content:center f pt-3"}>
+        <div className={"flex flex-column justify-content:center pt-3"}>
             <div className={'flex w-10'}>
                 <div
                     className={"w-full text-3xl h-10 font-bold flex justify-content: start items-center pt-3 pb-2"}>Vouchers
