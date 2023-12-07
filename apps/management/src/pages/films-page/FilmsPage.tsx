@@ -14,7 +14,6 @@ export function FilmsPage(){
         refreshFilms()
     }, []);
 
-
     function refreshFilms(){
         fetch('http://localhost:8000/films')
             .then(response => response.json())
@@ -40,7 +39,8 @@ export function FilmsPage(){
                     )
                 }}></Column>
             </DataTable>
-            <EditFilmModal visible={isEditable} film={editableFilm} onHide={()=>setIsEditable(false)} onFilmEdited={()=> refreshFilms()}/>
+            <EditFilmModal visible={isEditable} film={editableFilm} onHide={()=>setIsEditable(false)}
+                           onFilmEdited={()=> refreshFilms()}/>
         </div>
     )
 }

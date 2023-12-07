@@ -30,14 +30,12 @@ export function EditFilmModal(props: EditFilmModalProps) {
     const [changeReleaseDateFilm, setChangeReleaseDateFilm] = useState<Date>();
     const [changeCastFilm, setChangeCastFilm] = useState<string[]>();
 
-    const [selectedGenre, setSelectedGenre] = useState(null);
     const [filteredGenre, setFilteredGenre] = useState<string[]>([]);
 
-    const genre = ["Action", "Adventure", "Comedy", "Crime", "Drama", "Fantasy", "Historical", "Historical fiction",
+    const genre = ["Action", "Adventure", "Comedy", "Crime", "Fantasy", "Historical", "Historical fiction",
         "Horror", "Magical realism", "Mystery", "Paranoid Fiction", "Philosophical", "Political", "Romance", "Saga",
         "Satire", "Science fiction", "Social", "Speculative", "Thriller", "Urban", "Western", "Animation", "Live-action",
-        "Superhero", "Supernatural", "Kids", "Sci-fi", "Romance", "Drama", "Horror", "Thriller"];
-
+        "Superhero", "Supernatural", "Kids", "Sci-fi", "Romance", "Drama", "Horror"];
 
     const search = (event: any) => {
         setTimeout(() => {
@@ -54,22 +52,12 @@ export function EditFilmModal(props: EditFilmModalProps) {
         }, 250);
     }
 
-    function AgeRestrictionSelect() {
-        const ageRestriction = [
-            {name: "none", value: null},
-            {name: "6+", value: 6},
-            {name: "12+", value: 12},
-            {name: "18+", value: 18}
-        ]
-
-        return (
-            <div>
-                <Dropdown value={changeAgeRestrictionFilm} onChange={(e) => setChangeAgeRestrictionFilm(e.value)}
-                          optionLabel={"name"} optionValue={"value"} options={ageRestriction}
-                          placeholder={"Select age restriction"}/>
-            </div>
-        )
-    }
+    const ageRestriction = [
+        {name: "none", value: null},
+        {name: "6+", value: 6},
+        {name: "12+", value: 12},
+        {name: "18+", value: 18}
+    ];
 
     useEffect(() => {
         setChangeTitleFilm(props.film?.title);
@@ -85,53 +73,115 @@ export function EditFilmModal(props: EditFilmModalProps) {
         setChangeCastFilm(props.film?.cast);
     }, [props.film]);
 
+    function editFilm(){
+        fetch('http://localhost:8000/films/' + props.film?.id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: changeTitleFilm,
+                director: changeDirectorFilm,
+                studio: changeStudioFilm,
+                description: changeDescriptionFilm,
+                genre: changeGenreFilm,
+                duration: changeDurationFilm,
+                language: changeLanguageFilm,
+                ageRestriction: changeAgeRestrictionFilm,
+                production: changeProductionFilm,
+                releaseDate: changeReleaseDateFilm?.toISOString().slice(0, 10),
+                cast: changeCastFilm
+            })
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            props.onFilmEdited();
+            props.onHide();
+        });
+    }
+
     return (
         <Sidebar visible={props.visible} fullScreen position={"top"}
+                 header={<h2>Edit film - {props.film?.title}</h2>}
                  onHide={() => props.onHide()}>
-            <h1>Edit film</h1>
-            <div className={"flex flex-column gap-6 align-items-center"}>
-                <div className={"flex gap-6"}>
-                    <InputText placeholder={"title"} className={"h-3rem text-xl"}
-                               value={changeTitleFilm}
-                               onChange={(e) => setChangeTitleFilm(e.target.value)}></InputText>
-                    <InputText placeholder={"director"} className={"h-3rem text-xl"}
-                               value={changeDirectorFilm}
-                               onChange={(e) => setChangeDirectorFilm(e.target.value)}></InputText>
-                    <InputText placeholder={"studio"} className={"h-3rem text-xl"}
-                               value={changeStudioFilm}
-                               onChange={(e) => setChangeStudioFilm(e.target.value)}></InputText>
+            <div className={"w-12 flex flex-column gap-6 align-items-center justify-content-center pt-2"}>
+                <div className={"flex gap-2 w-9"}>
+                    <span className="p-float-label w-4">
+                        <InputText placeholder={"title"} className={"h-3rem text-xl w-12"}
+                                   value={changeTitleFilm}
+                                   onChange={(e) => setChangeTitleFilm(e.target.value)}></InputText>
+                        <label htmlFor="title">title</label>
+                        </span>
+                    <span className="p-float-label w-4">
+                        <InputText placeholder={"director"} className={"h-3rem text-xl w-12"}
+                                   value={changeDirectorFilm}
+                                   onChange={(e) => setChangeDirectorFilm(e.target.value)}></InputText>
+                        <label htmlFor="director">director</label>
+                    </span>
+                    <span className="p-float-label w-4">
+                        <InputText placeholder={"studio"} className={"h-3rem text-xl w-12"}
+                                   value={changeStudioFilm}
+                                   onChange={(e) => setChangeStudioFilm(e.target.value)}></InputText>
+                        <label htmlFor="studio">studio</label>
+                    </span>
                 </div>
-                <InputTextarea placeholder={"description"} className={"h-7rem text-xl"}
-                               value={changeDescriptionFilm}
-                               onChange={(e) => setChangeDescriptionFilm(e.target.value)} rows={15}
-                               cols={75}></InputTextarea>
-                <div className="card p-fluid w-6">
+                <span className="p-float-label w-9">
+                     <InputTextarea placeholder={"description"} className={"h-7rem text-xl w-12"}
+                                    value={changeDescriptionFilm}
+                                    onChange={(e) => setChangeDescriptionFilm(e.target.value)} rows={15}
+                                    cols={75}></InputTextarea>
+                    <label htmlFor="description">description</label>
+                </span>
+                <div className="card p-fluid w-9">
+                    <span className="p-float-label w-12">
                     <AutoComplete className={"text-white"} multiple value={changeGenreFilm}
                                   suggestions={filteredGenre} completeMethod={search}
-                                  onChange={(e) => setSelectedGenre(e.value)}/>
+                                  onChange={(e) => setChangeGenreFilm(e.value)}/>
+                    <label htmlFor="genre">genre</label>
+                    </span>
                 </div>
-                <div className={"flex gap-6"}>
-                    <InputNumber placeholder={"duration"} className={"h-3rem text-xl"}
+                <div className={"flex gap-2  w-9"}>
+                    <span className="p-float-label w-4">
+                    <InputNumber placeholder={"duration"} className={"h-3rem text-xl w-12"}
                                  value={changeDurationFilm}
                                  onChange={(e) => setChangeDurationFilm(e.value!)}></InputNumber>
-                    <InputText placeholder={"language"} className={"h-3rem text-xl"}
+                        <label htmlFor="duration">duration</label>
+                    </span>
+                    <span className="p-float-label w-4">
+                    <InputText placeholder={"language"} className={"h-3rem text-xl w-12"}
                                value={changeLanguageFilm}
                                onChange={(e) => setChangeLanguageFilm(e.target.value)}></InputText>
-                    <AgeRestrictionSelect/>
+                        <label htmlFor="language">language</label>
+                    </span>
+                    <span className="p-float-label w-4">
+                    <Dropdown value={changeAgeRestrictionFilm} onChange={(e) => setChangeAgeRestrictionFilm(e.value)}
+                              optionLabel={"name"} optionValue={"value"} options={ageRestriction}
+                              placeholder={"Select age restriction"} className={"h-3rem text-xl w-12"}/>
+                        <label htmlFor="age restriction">age restriction</label>
+                    </span>
                 </div>
-                <div className={"flex gap-6"}>
-                    <InputText placeholder={"production"} className={"h-3rem text-xl"}
-                           value={changeProductionFilm}
-                           onChange={(e) => setChangeProductionFilm(e.target.value)}></InputText>
-                    <Calendar value={changeReleaseDateFilm} dateFormat={"dd-mm-yy"} onChange={(e) => setChangeReleaseDateFilm(e.value!)} />
+                <div className={"flex gap-2 w-9"}>
+                    <span className="p-float-label w-6">
+                    <InputText placeholder={"production"} className={"h-3rem text-xl w-12"}
+                               value={changeProductionFilm}
+                               onChange={(e) => setChangeProductionFilm(e.target.value)}></InputText>
+                        <label htmlFor="production">production</label>
+                    </span>
+                    <span className="p-float-label w-6">
+                    <Calendar value={changeReleaseDateFilm} dateFormat={"yy-mm-dd"}
+                              onChange={(e) => setChangeReleaseDateFilm(e.value!)} className={"w-12"}/>
+                        <label htmlFor="release date">release date</label>
+                    </span>
                 </div>
-                <Chips value={changeCastFilm} onChange={(e)=>setChangeCastFilm}/>
+                <span className="p-float-label w-9">
+                <Chips value={changeCastFilm} onChange={(e) => setChangeCastFilm(e.value!)} className={"w-12"}/>
+                    <label htmlFor="cast">cast</label>
+                </span>
                 <div className={"w-full flex justify-content-evenly"}>
-                    <Button icon="pi pi-times" severity="danger"/>
-                    <Button severity="success" label={"UPDATE"}/>
+                    <Button icon="pi pi-times" severity="danger" onClick={()=> props.onHide()} />
+                    <Button severity="success" label={"UPDATE"} onClick={()=>editFilm()}/>
                 </div>
             </div>
-
         </Sidebar>
     );
 }
