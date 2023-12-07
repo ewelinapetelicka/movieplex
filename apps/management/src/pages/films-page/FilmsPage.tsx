@@ -23,7 +23,7 @@ export function FilmsPage(){
     }
 
     return(
-        <div>
+        <div className={"p"}>
             <h1>FilmsPage</h1>
             <DataTable value={films} tableStyle={{width: '90rem'}}>
                 <Column field="title" header="TITLE"></Column>
