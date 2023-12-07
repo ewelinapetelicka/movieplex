@@ -2,13 +2,16 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Film} from "../../models/film/film";
 import {Button} from "primereact/button";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {EditFilmModal} from "./components/edit-film-modal/EditFilmModal";
+import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
+import {Toast} from "primereact/toast";
 
 export function FilmsPage(){
     const [films, setFilms] = useState<Film[]>([]);
     const [isEditable, setIsEditable] = useState(false);
     const [editableFilm, setEditableFilm] = useState<Film>();
+    const toast = useRef<Toast>(null);
 
     useEffect(() => {
         refreshFilms()
@@ -20,6 +23,20 @@ export function FilmsPage(){
             .then((data : Film[])=>{
                 setFilms(data)
             })
+    }
+
+    function deleteFilm(id: number) {
+        fetch('http://localhost:8000/films/' + id, {
+            method: 'DELETE',
+        }).then(() => {
+            setFilms(films.filter((film) => film.id !== id));
+                toast.current!.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
+        });
+    }
+
+    function filmEdited(){
+        refreshFilms();
+            toast.current!.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
     }
 
     return(
@@ -34,13 +51,24 @@ export function FilmsPage(){
                                 setEditableFilm(film);
                                 setIsEditable(true);
                             }}/>
-                            <Button  label={"Delete"} className={"p-button-danger"} />
+                            <Button  label={"Delete"} className={"p-button-danger"}  onClick={()=>{
+                                confirmDialog({
+                                    message: 'Are you sure you want to delete this film?',
+                                    header: 'Confirmation',
+                                    icon: 'pi pi-exclamation-triangle',
+                                    accept: () => deleteFilm(film.id),
+                                    reject: () => {
+                                    }
+                                })
+                            }}/>
                         </div>
                     )
                 }}></Column>
             </DataTable>
             <EditFilmModal visible={isEditable} film={editableFilm} onHide={()=>setIsEditable(false)}
-                           onFilmEdited={()=> refreshFilms()}/>
+                           onFilmEdited={()=> filmEdited()}/>
+            <Toast ref={toast}/>
+            <ConfirmDialog/>
         </div>
     )
 }
