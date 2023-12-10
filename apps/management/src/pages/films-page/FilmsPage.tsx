@@ -12,12 +12,16 @@ import {InputText} from "primereact/inputtext";
 export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
     const [filteredFilms, setFilteredFilms] = useState<Film[]>([]);
+    const [pagedFilms, setPagedFilms] = useState<Film[]>([]);
     const [query, setQuery] = useState<string>('');
     const [isEditable, setIsEditable] = useState(false);
     const [editableFilm, setEditableFilm] = useState<Film>();
     const [newFilm, setNewFilm] = useState<Film>();
     const [isAdding, setIsAdding] = useState(false);
     const toast = useRef<Toast>(null);
+    const [page, setPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const [pageSize, setPageSize] = useState(2);
 
     const ageRestriction = [
         {name: "none", value: null},
@@ -54,6 +58,8 @@ export function FilmsPage() {
                     film.genre.some((genre) => genre.toLowerCase().includes(query.toLowerCase()))
             )
         );
+        setPage(0);
+        setTotalPages(Math.floor(films.length / pageSize));
     }
 
     useEffect(() => {
@@ -63,6 +69,10 @@ export function FilmsPage() {
     useEffect(() => {
         searchFilm();
     }, [films]);
+
+    useEffect(() => {
+        setPagedFilms(filteredFilms.slice(page * pageSize, (page + 1) * pageSize));
+    }, [filteredFilms, page]);
 
     function refreshFilms() {
         fetch('http://localhost:8000/films')
@@ -94,7 +104,7 @@ export function FilmsPage() {
                     <span className=" flex p-input-icon-left align-items-center">
                         <i className="pi pi-search"/>
                         <InputText placeholder="Search" value={query}
-                                   onChange={(event) => setQuery(event.target.value)} />
+                                   onChange={(event) => setQuery(event.target.value)}/>
                         <Button label={"Search"} onClick={() => searchFilm()}/>
                     </span>
                     <Button severity="secondary" className={"h-3rem"}
@@ -103,7 +113,7 @@ export function FilmsPage() {
                     }}/>
                 </div>
             </div>
-            <DataTable value={filteredFilms} tableStyle={{width: '90rem'}}>
+            <DataTable value={pagedFilms} tableStyle={{width: '90rem'}}>
                 <Column field="title" header="TITLE"></Column>
                 <Column header="ACTIONS" body={(film: Film) => {
                     return (
@@ -126,6 +136,15 @@ export function FilmsPage() {
                     )
                 }}></Column>
             </DataTable>
+            <div className={"w-9 flex justify-content-end align-items-center pt-2 gap-2"}>
+                <Button severity="secondary" onClick={() => setPage(page - 1)}
+                        disabled={page === 0} icon={"pi pi-angle-left"}/>
+                <b>{page + 1} / </b>
+                <b>{totalPages + 1}</b>
+                <Button severity="secondary" onClick={() => setPage(page + 1)}
+                        disabled={page === totalPages}
+                        icon={"pi pi-angle-right"}/>
+            </div>
             <EditFilmModal visible={isEditable} film={editableFilm} onHide={() => setIsEditable(false)}
                            onFilmEdited={() => filmEdited()} ageRestriction={ageRestriction} genre={genre}
                            search={search}
