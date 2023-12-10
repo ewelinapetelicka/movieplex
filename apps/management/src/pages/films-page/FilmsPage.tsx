@@ -7,9 +7,12 @@ import {EditFilmModal} from "./components/edit-film-modal/EditFilmModal";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
 import {AddFilmModal} from "./components/add-film-modal/AddFilmModal";
+import {InputText} from "primereact/inputtext";
 
 export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
+    const [filteredFilms, setFilteredFilms] = useState<Film[]>([]);
+    const [query, setQuery] = useState<string>('');
     const [isEditable, setIsEditable] = useState(false);
     const [editableFilm, setEditableFilm] = useState<Film>();
     const [newFilm, setNewFilm] = useState<Film>();
@@ -44,15 +47,28 @@ export function FilmsPage() {
         }, 250);
     }
 
+    function searchFilm() {
+        setFilteredFilms(
+            films.filter(
+                (film) => film.title.toLowerCase().includes(query.toLowerCase()) ||
+                    film.genre.some((genre) => genre.toLowerCase().includes(query.toLowerCase()))
+            )
+        );
+    }
+
     useEffect(() => {
         refreshFilms()
     }, []);
+
+    useEffect(() => {
+        searchFilm();
+    }, [films]);
 
     function refreshFilms() {
         fetch('http://localhost:8000/films')
             .then(response => response.json())
             .then((data: Film[]) => {
-                setFilms(data)
+                setFilms(data);
             })
     }
 
@@ -70,16 +86,24 @@ export function FilmsPage() {
         toast.current!.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
     }
 
-
     return (
         <div className={"w-12 h-12 flex justify-content-center align-items-center flex-column"}>
             <div className={"w-10 flex justify-content-between pt-4 pb-3"}>
                 <h1>FilmsPage</h1>
-                <Button severity="secondary" label={"Add new"} onClick={() => {
-                    setIsAdding(true);
-                }}/>
+                <div className={"flex gap-4 align-items-center"}>
+                    <span className=" flex p-input-icon-left align-items-center">
+                        <i className="pi pi-search"/>
+                        <InputText placeholder="Search" value={query}
+                                   onChange={(event) => setQuery(event.target.value)} />
+                        <Button label={"Search"} onClick={() => searchFilm()}/>
+                    </span>
+                    <Button severity="secondary" className={"h-3rem"}
+                            label={"Add new"} onClick={() => {
+                        setIsAdding(true);
+                    }}/>
+                </div>
             </div>
-            <DataTable value={films} tableStyle={{width: '90rem'}}>
+            <DataTable value={filteredFilms} tableStyle={{width: '90rem'}}>
                 <Column field="title" header="TITLE"></Column>
                 <Column header="ACTIONS" body={(film: Film) => {
                     return (
