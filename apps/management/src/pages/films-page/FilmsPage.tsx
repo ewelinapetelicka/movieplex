@@ -6,21 +6,52 @@ import {useEffect, useRef, useState} from "react";
 import {EditFilmModal} from "./components/edit-film-modal/EditFilmModal";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
+import {AddFilmModal} from "./components/add-film-modal/AddFilmModal";
 
-export function FilmsPage(){
+export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
     const [isEditable, setIsEditable] = useState(false);
     const [editableFilm, setEditableFilm] = useState<Film>();
+    const [newFilm, setNewFilm] = useState<Film>();
+    const [isAdding, setIsAdding] = useState(false);
     const toast = useRef<Toast>(null);
+
+    const ageRestriction = [
+        {name: "none", value: null},
+        {name: "6+", value: 6},
+        {name: "12+", value: 12},
+        {name: "18+", value: 18}
+    ];
+    const [filteredGenre, setFilteredGenre] = useState<string[]>([]);
+
+    const genre = ["Action", "Adventure", "Comedy", "Crime", "Fantasy", "Historical", "Historical fiction",
+        "Horror", "Magical realism", "Mystery", "Paranoid Fiction", "Philosophical", "Political", "Romance", "Saga",
+        "Satire", "Science fiction", "Social", "Speculative", "Thriller", "Urban", "Western", "Animation", "Live-action",
+        "Superhero", "Supernatural", "Kids", "Sci-fi", "Romance", "Drama", "Horror"];
+
+    const search = (event: any) => {
+        setTimeout(() => {
+            let _filteredGenres: string[];
+
+            if (!event.query.trim().length) {
+                _filteredGenres = [...genre];
+            } else {
+                _filteredGenres = genre.filter((genre) => {
+                    return genre.toLowerCase().startsWith(event.query.toLowerCase());
+                });
+            }
+            setFilteredGenre(_filteredGenres);
+        }, 250);
+    }
 
     useEffect(() => {
         refreshFilms()
     }, []);
 
-    function refreshFilms(){
+    function refreshFilms() {
         fetch('http://localhost:8000/films')
             .then(response => response.json())
-            .then((data : Film[])=>{
+            .then((data: Film[]) => {
                 setFilms(data)
             })
     }
@@ -30,28 +61,34 @@ export function FilmsPage(){
             method: 'DELETE',
         }).then(() => {
             setFilms(films.filter((film) => film.id !== id));
-                toast.current!.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
+            toast.current!.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
         });
     }
 
-    function filmEdited(){
+    function filmEdited() {
         refreshFilms();
-            toast.current!.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
+        toast.current!.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
     }
 
-    return(
-        <div className={"p"}>
-            <h1>FilmsPage</h1>
+
+    return (
+        <div className={"w-12 h-12 flex justify-content-center align-items-center flex-column"}>
+            <div className={"w-10 flex justify-content-between pt-4 pb-3"}>
+                <h1>FilmsPage</h1>
+                <Button severity="secondary" label={"Add new"} onClick={() => {
+                    setIsAdding(true);
+                }}/>
+            </div>
             <DataTable value={films} tableStyle={{width: '90rem'}}>
                 <Column field="title" header="TITLE"></Column>
-                <Column  header="ACTIONS" body={(film : Film)=>{
-                    return(
+                <Column header="ACTIONS" body={(film: Film) => {
+                    return (
                         <div className={"flex gap-2"}>
-                            <Button  label={"Edit"} className={"p-button-success"} onClick={()=>{
+                            <Button label={"Edit"} className={"p-button-success"} onClick={() => {
                                 setEditableFilm(film);
                                 setIsEditable(true);
                             }}/>
-                            <Button  label={"Delete"} className={"p-button-danger"}  onClick={()=>{
+                            <Button label={"Delete"} className={"p-button-danger"} onClick={() => {
                                 confirmDialog({
                                     message: 'Are you sure you want to delete this film?',
                                     header: 'Confirmation',
@@ -65,8 +102,13 @@ export function FilmsPage(){
                     )
                 }}></Column>
             </DataTable>
-            <EditFilmModal visible={isEditable} film={editableFilm} onHide={()=>setIsEditable(false)}
-                           onFilmEdited={()=> filmEdited()}/>
+            <EditFilmModal visible={isEditable} film={editableFilm} onHide={() => setIsEditable(false)}
+                           onFilmEdited={() => filmEdited()} ageRestriction={ageRestriction} genre={genre}
+                           search={search}
+                           filteredGenre={filteredGenre}/>
+            <AddFilmModal visible={isAdding} onHide={() => setIsAdding(false)}
+                          onFilmAdded={() => newFilm} ageRestriction={ageRestriction} genre={genre} search={search}
+                          filteredGenre={filteredGenre}/>
             <Toast ref={toast}/>
             <ConfirmDialog/>
         </div>

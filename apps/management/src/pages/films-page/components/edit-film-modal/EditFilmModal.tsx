@@ -15,6 +15,10 @@ interface EditFilmModalProps {
     onHide: () => void;
     onFilmEdited: () => void;
     film?: Film;
+    ageRestriction: { name: string, value: number | null }[];
+    genre: string[];
+    search: (event: any) => void;
+    filteredGenre: string[];
 }
 
 export function EditFilmModal(props: EditFilmModalProps) {
@@ -29,35 +33,6 @@ export function EditFilmModal(props: EditFilmModalProps) {
     const [changeProductionFilm, setChangeProductionFilm] = useState<string>();
     const [changeReleaseDateFilm, setChangeReleaseDateFilm] = useState<Date>();
     const [changeCastFilm, setChangeCastFilm] = useState<string[]>();
-
-    const [filteredGenre, setFilteredGenre] = useState<string[]>([]);
-
-    const genre = ["Action", "Adventure", "Comedy", "Crime", "Fantasy", "Historical", "Historical fiction",
-        "Horror", "Magical realism", "Mystery", "Paranoid Fiction", "Philosophical", "Political", "Romance", "Saga",
-        "Satire", "Science fiction", "Social", "Speculative", "Thriller", "Urban", "Western", "Animation", "Live-action",
-        "Superhero", "Supernatural", "Kids", "Sci-fi", "Romance", "Drama", "Horror"];
-
-    const search = (event: any) => {
-        setTimeout(() => {
-            let _filteredGenres: string[];
-
-            if (!event.query.trim().length) {
-                _filteredGenres = [...genre];
-            } else {
-                _filteredGenres = genre.filter((genre) => {
-                    return genre.toLowerCase().startsWith(event.query.toLowerCase());
-                });
-            }
-            setFilteredGenre(_filteredGenres);
-        }, 250);
-    }
-
-    const ageRestriction = [
-        {name: "none", value: null},
-        {name: "6+", value: 6},
-        {name: "12+", value: 12},
-        {name: "18+", value: 18}
-    ];
 
     useEffect(() => {
         setChangeTitleFilm(props.film?.title);
@@ -135,7 +110,7 @@ export function EditFilmModal(props: EditFilmModalProps) {
                 <div className="card p-fluid w-9">
                     <span className="p-float-label w-12">
                     <AutoComplete className={"text-white"} multiple value={changeGenreFilm}
-                                  suggestions={filteredGenre} completeMethod={search}
+                                  suggestions={props.filteredGenre} completeMethod={props.search}
                                   onChange={(e) => setChangeGenreFilm(e.value)}/>
                     <label htmlFor="genre">genre</label>
                     </span>
@@ -155,7 +130,7 @@ export function EditFilmModal(props: EditFilmModalProps) {
                     </span>
                     <span className="p-float-label w-4">
                     <Dropdown value={changeAgeRestrictionFilm} onChange={(e) => setChangeAgeRestrictionFilm(e.value)}
-                              optionLabel={"name"} optionValue={"value"} options={ageRestriction}
+                              optionLabel={"name"} optionValue={"value"} options={props.ageRestriction}
                               placeholder={"Select age restriction"} className={"h-3rem text-xl w-12"}/>
                         <label htmlFor="age restriction">age restriction</label>
                     </span>
@@ -174,7 +149,7 @@ export function EditFilmModal(props: EditFilmModalProps) {
                     </span>
                 </div>
                 <span className="p-float-label w-9">
-                <Chips value={changeCastFilm} onChange={(e) => setChangeCastFilm(e.value!)} className={"w-12"}/>
+                <Chips value={changeCastFilm} onChange={(e) => setChangeCastFilm(e.value!)} className={"w-12 chips-full"}/>
                     <label htmlFor="cast">cast</label>
                 </span>
                 <div className={"w-full flex justify-content-evenly"}>
