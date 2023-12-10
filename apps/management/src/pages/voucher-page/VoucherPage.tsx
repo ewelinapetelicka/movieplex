@@ -46,7 +46,7 @@ export function VoucherPage() {
                 </div>
                 <Button label={"Add new"} className={"m-2"} icon={'pi pi-plus'} onClick={() => setIsAdding(true)}/>
             </div>
-            <DataTable value={vouchers} tableStyle={{width: '90rem'}}>
+            <DataTable value={vouchers} className={"w-9"} paginator rows={5} >
                 <Column field="name" header="NAME"></Column>
                 <Column field="discount" header="DISCOUNT"></Column>
                 <Column header="ACTIONS" body={(voucher: Voucher) => {
