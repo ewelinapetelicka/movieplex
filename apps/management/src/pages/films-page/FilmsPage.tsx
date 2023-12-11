@@ -8,6 +8,7 @@ import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
 import {AddFilmModal} from "./components/add-film-modal/AddFilmModal";
 import {InputText} from "primereact/inputtext";
+import {useHttp} from "../../hooks/http/use-http";
 
 export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
@@ -22,6 +23,8 @@ export function FilmsPage() {
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(2);
+
+    const http = useHttp();
 
     const ageRestriction = [
         {name: "none", value: null},
@@ -75,17 +78,15 @@ export function FilmsPage() {
     }, [filteredFilms, page]);
 
     function refreshFilms() {
-        fetch('http://localhost:8000/films')
-            .then(response => response.json())
+        http.get("films")
             .then((data: Film[]) => {
                 setFilms(data);
             })
     }
 
     function deleteFilm(id: number) {
-        fetch('http://localhost:8000/films/' + id, {
-            method: 'DELETE',
-        }).then(() => {
+        http.delete("films/" + id)
+        .then(() => {
             setFilms(films.filter((film) => film.id !== id));
             toast.current!.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
         });
@@ -102,10 +103,10 @@ export function FilmsPage() {
                 <h1>FilmsPage</h1>
                 <div className={"flex gap-4 align-items-center"}>
                     <span className=" flex p-input-icon-left align-items-center">
-                        <i className="pi pi-search"/>
                         <InputText placeholder="Search" value={query}
                                    onChange={(event) => setQuery(event.target.value)}/>
-                        <Button label={"Search"} onClick={() => searchFilm()}/>
+                        <Button label={"Search"} onClick={() => searchFilm()}
+                                icon={"pi pi-search"}/>
                     </span>
                     <Button severity="secondary" className={"h-3rem"}
                             label={"Add new"} onClick={() => {

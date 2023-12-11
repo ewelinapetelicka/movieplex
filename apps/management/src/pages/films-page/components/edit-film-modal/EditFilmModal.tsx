@@ -9,6 +9,7 @@ import {InputNumber} from "primereact/inputnumber";
 import {Dropdown} from "primereact/dropdown";
 import {Calendar} from "primereact/calendar";
 import {Chips} from "primereact/chips";
+import {useHttp} from "../../../../hooks/http/use-http";
 
 interface EditFilmModalProps {
     visible: boolean;
@@ -34,6 +35,8 @@ export function EditFilmModal(props: EditFilmModalProps) {
     const [changeReleaseDateFilm, setChangeReleaseDateFilm] = useState<Date>();
     const [changeCastFilm, setChangeCastFilm] = useState<string[]>();
 
+    const http = useHttp();
+
     useEffect(() => {
         setChangeTitleFilm(props.film?.title);
         setChangeDirectorFilm(props.film?.director);
@@ -49,12 +52,7 @@ export function EditFilmModal(props: EditFilmModalProps) {
     }, [props.film]);
 
     function editFilm(){
-        fetch('http://localhost:8000/films/' + props.film?.id, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+       http.patch("films/" + props.film?.id, {
                 title: changeTitleFilm,
                 director: changeDirectorFilm,
                 studio: changeStudioFilm,
@@ -66,7 +64,6 @@ export function EditFilmModal(props: EditFilmModalProps) {
                 production: changeProductionFilm,
                 releaseDate: changeReleaseDateFilm?.toISOString().slice(0, 10),
                 cast: changeCastFilm
-            })
         }).then((res) => {
             return res.json();
         }).then((data) => {
@@ -74,6 +71,7 @@ export function EditFilmModal(props: EditFilmModalProps) {
             props.onHide();
         });
     }
+
 
     return (
         <Sidebar visible={props.visible} fullScreen position={"top"}

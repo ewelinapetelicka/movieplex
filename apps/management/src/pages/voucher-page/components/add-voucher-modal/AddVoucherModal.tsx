@@ -1,6 +1,7 @@
 import {Sidebar} from "primereact/sidebar";
 import {Button} from "primereact/button";
 import {useEffect, useState} from "react";
+import {useHttp} from "../../../../hooks/http/use-http";
 
 interface AddVoucherModalProps {
     visible: boolean;
@@ -12,24 +13,18 @@ export function AddVoucherModal(props: AddVoucherModalProps) {
     const [addNameVoucher, setAddNameVoucher] = useState<string>();
     const [addDiscountVoucher, setAddDiscountVoucher] = useState<number>();
 
+    const http = useHttp();
+
     useEffect(() => {
         setAddDiscountVoucher(0);
         setAddNameVoucher("");
     }, [props.visible]);
 
     function addVoucher() {
-        fetch('http://localhost:8000/vouchers/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        http.post("vouchers", {
                 name: addNameVoucher,
                 discount: addDiscountVoucher
-            })
-        }).then((res) => {
-            return res.json();
-        }).then((data) => {
+        }).then(() => {
             props.onHide();
             props.onVoucherAdded();
         });

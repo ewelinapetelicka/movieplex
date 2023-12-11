@@ -2,6 +2,7 @@ import {Sidebar} from "primereact/sidebar";
 import {Button} from "primereact/button";
 import {useEffect, useState} from "react";
 import {Voucher} from "../../../../models/voucher/voucher";
+import {useHttp} from "../../../../hooks/http/use-http";
 
 interface EditVoucherModalProps {
     visible: boolean;
@@ -14,24 +15,18 @@ export function EditVoucherModal(props: EditVoucherModalProps) {
     const [changeNameVoucher, setChangeNameVoucher] = useState<string>();
     const [changeDiscountVoucher, setChangeDiscountVoucher] = useState<number>();
 
+    const http = useHttp();
+
     useEffect(() => {
         setChangeNameVoucher(props.voucher?.name);
         setChangeDiscountVoucher(props.voucher?.discount);
     }, [props.voucher]);
 
     function editVoucher() {
-        fetch('http://localhost:8000/vouchers/' + props.voucher?.id, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: changeNameVoucher,
-                discount: changeDiscountVoucher
-            })
-        }).then((res) => {
-            return res.json();
-        }).then((data) => {
+        http.patch("vouchers/" + props.voucher?.id, {
+            name: changeNameVoucher,
+            discount: changeDiscountVoucher
+        }).then(() => {
             props.onVoucherEdited();
             props.onHide();
         });

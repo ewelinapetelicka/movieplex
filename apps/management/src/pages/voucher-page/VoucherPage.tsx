@@ -7,6 +7,7 @@ import {AddVoucherModal} from "./components/add-voucher-modal/AddVoucherModal";
 import {EditVoucherModal} from "./components/edit-voucher-modal/EditVoucherModal";
 import {Toast} from "primereact/toast";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
+import {InputText} from "primereact/inputtext";
 
 export function VoucherPage() {
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
@@ -14,10 +15,18 @@ export function VoucherPage() {
     const [isAdding, setIsAdding] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
     const toast = useRef<Toast>(null);
+    const [filteredVouchers, setFilteredVouchers] = useState<Voucher[]>([]);
+    const [query, setQuery] = useState<string>('');
+
 
     useEffect(() => {
         refreshVouchers()
     }, []);
+
+    useEffect(() => {
+        searchVoucher()
+    }, [vouchers]);
+
 
     function refreshVouchers() {
         fetch('http://localhost:8000/vouchers')
@@ -38,15 +47,26 @@ export function VoucherPage() {
         });
     }
 
+    function searchVoucher() {
+        setFilteredVouchers(vouchers.filter((voucher) => voucher.name.toLowerCase().includes(query.toLowerCase())));
+    }
+
     return (
-        <div className={"flex flex-column justify-content:center pt-3"}>
-            <div className={'flex w-10'}>
+        <div className={"flex flex-column justify-content:center pt-3 w-9"}>
+            <div className={'flex  justify-content-between'}>
                 <div
-                    className={"w-full text-3xl h-10 font-bold flex justify-content: start items-center pt-3 pb-2"}>Vouchers
+                    className={"text-3xl h-10 font-bold flex justify-content-start items-center pt-3 pb-2"}>Vouchers
                 </div>
-                <Button label={"Add new"} className={"m-2"} icon={'pi pi-plus'} onClick={() => setIsAdding(true)}/>
+                <div className={"flex gap-2 align-items-center justify-content-end w-9"}>
+                    <span className=" flex p-input-icon-left align-items-center">
+                        <InputText placeholder="Search" value={query}
+                                   onChange={(event) => setQuery(event.target.value)}/>
+                        <Button icon={"pi pi-search"} onClick={()=>searchVoucher()}/>
+                    </span>
+                    <Button label={"Add new"} className={"m-2"} onClick={() => setIsAdding(true)}/>
+                </div>
             </div>
-            <DataTable value={vouchers} className={"w-9"} paginator rows={5} >
+            <DataTable value={filteredVouchers} paginator rows={5}>
                 <Column field="name" header="NAME"></Column>
                 <Column field="discount" header="DISCOUNT"></Column>
                 <Column header="ACTIONS" body={(voucher: Voucher) => {

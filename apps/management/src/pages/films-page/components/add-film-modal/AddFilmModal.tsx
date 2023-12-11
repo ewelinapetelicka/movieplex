@@ -8,6 +8,7 @@ import {Calendar} from "primereact/calendar";
 import {Chips} from "primereact/chips";
 import {Button} from "primereact/button";
 import {AutoComplete} from "primereact/autocomplete";
+import {useHttp} from "../../../../hooks/http/use-http";
 
 interface AddFilmModelProps {
     visible: boolean;
@@ -32,6 +33,8 @@ export function AddFilmModal(props: AddFilmModelProps) {
     const [addReleaseDateFilm, setAddReleaseDateFilm] = useState<Date>();
     const [addCastFilm, setAddCastFilm] = useState<string[]>();
     const [isFilled, setIsFilled] = useState(false);
+
+    const http = useHttp();
 
     useEffect(() => {
         setAddTitleFilm("");
@@ -70,12 +73,7 @@ export function AddFilmModal(props: AddFilmModelProps) {
     ]);
 
     function addFilm() {
-        fetch('http://localhost:8000/films/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+      http.post("films", {
                 title: addTitleFilm,
                 director: addDirectorFilm,
                 studio: addStudioFilm,
@@ -87,7 +85,6 @@ export function AddFilmModal(props: AddFilmModelProps) {
                 production: addProductionFilm,
                 releaseDate: addReleaseDateFilm,
                 cast: addCastFilm
-            })
         }).then((res) => {
             return res.json();
         }).then((data) => {
