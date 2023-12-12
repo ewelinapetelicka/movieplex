@@ -4,8 +4,13 @@ import {useState} from "react";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {useHttp} from "../../hooks/http/use-http";
+import {User} from "../../models/user/user";
 
-export function LoginPage(){
+interface LoginPageProps{
+    onLogged:(user: User)=>void;
+}
+
+export function LoginPage(props: LoginPageProps){
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const http= useHttp();
@@ -14,8 +19,10 @@ export function LoginPage(){
         http.get("users", {
             email:email,
             password: password,
-        }).then((data) => {
-            console.log(data)
+        }).then((data: User[]) => {
+            if(data.length > 0){
+                props.onLogged(data[0]);
+            }
         })
     }
 
