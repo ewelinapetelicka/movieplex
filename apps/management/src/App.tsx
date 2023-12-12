@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PrimeReactProvider} from 'primereact/api';
 import {Route, Routes} from "react-router";
 import {Header} from "./components/core/header/Header";
@@ -11,16 +11,28 @@ import {TeasersPage} from "./pages/teasers-page/TeasersPage";
 import {UserContext} from "./context/user/user-context";
 import {User} from "./models/user/user";
 import {LoginPage} from "./pages/login-page/LoginPage";
+import {useStorage} from "./hooks/storage/use-storage";
 
 export function App() {
     const divStyle = {height: 'calc(100vh - 5rem)'}
     const routesStyle = {width: 'calc(100vw - 10rem)'}
-
+    const storage = useStorage();
     const [user, setUser] = useState<User | null>(null);
+
+    function logIn(user: User) {
+        setUser(user);
+        storage.set('user', JSON.stringify(user));
+    }
+
+    useEffect(() => {
+        if (storage.get('user')) {
+            setUser(JSON.parse(storage.get('user')!));
+        }
+    }, []);
 
     return (
         <PrimeReactProvider>
-            {!user && <LoginPage onLogged={(user:User)=>setUser(user)}></LoginPage>}
+            {!user && <LoginPage onLogged={(user: User) => logIn(user)}></LoginPage>}
             {user && (
                 <UserContext.Provider value={user!}>
                     <Header></Header>
