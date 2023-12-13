@@ -40,7 +40,7 @@ export function App() {
                 {!user && <LoginPage onLogged={(user: User) => logIn(user)}></LoginPage>}
                 {user && (
                     <UserContext.Provider value={user!}>
-                        <Header></Header>
+                        <Header  onUserLogOut={()=> setUser(null)}></Header>
                         <div className={"flex"} style={divStyle}>
                             <Menu></Menu>
                             <div style={routesStyle} className={"overflow-y-auto"}>
