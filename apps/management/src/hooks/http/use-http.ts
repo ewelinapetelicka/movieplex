@@ -21,13 +21,19 @@ export function useHttp() {
         patch(endpoint: string, body: any) {
             return fetch(host + endpoint, {
                 method: 'PATCH',
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
         },
         post(endpoint: string, body: any) {
             return fetch(host + endpoint, {
                 method: 'POST',
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
         }
     }

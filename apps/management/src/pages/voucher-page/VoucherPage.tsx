@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {Voucher} from "../../models/voucher/voucher";
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
@@ -8,15 +8,16 @@ import {EditVoucherModal} from "./components/edit-voucher-modal/EditVoucherModal
 import {Toast} from "primereact/toast";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {InputText} from "primereact/inputtext";
+import {ToasterContext} from "../../context/toaster/toaster-context";
 
 export function VoucherPage() {
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
     const [editableVoucher, setEditableVoucher] = useState<Voucher>();
     const [isAdding, setIsAdding] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
-    const toast = useRef<Toast>(null);
     const [filteredVouchers, setFilteredVouchers] = useState<Voucher[]>([]);
     const [query, setQuery] = useState<string>('');
+    const toaster = useContext(ToasterContext);
 
 
     useEffect(() => {
@@ -41,9 +42,8 @@ export function VoucherPage() {
             method: 'DELETE',
         }).then(() => {
             setVouchers(vouchers.filter((voucher) => voucher.id !== id));
-            if (toast.current) {
-                toast!.current.show({severity: 'info', summary: 'info', detail: 'Voucher deleted', life: 3000});
-            }
+                toaster.show({severity: 'info', summary: 'info', detail: 'Voucher deleted', life: 3000});
+
         });
     }
 
@@ -61,7 +61,7 @@ export function VoucherPage() {
                     <span className=" flex p-input-icon-left align-items-center">
                         <InputText placeholder="Search" value={query}
                                    onChange={(event) => setQuery(event.target.value)}/>
-                        <Button icon={"pi pi-search"} onClick={()=>searchVoucher()}/>
+                        <Button icon={"pi pi-search"} onClick={() => searchVoucher()}/>
                     </span>
                     <Button label={"Add new"} className={"m-2"} onClick={() => setIsAdding(true)}/>
                 </div>
@@ -88,7 +88,7 @@ export function VoucherPage() {
                                         });
                                     }}/>
                         </div>
-                    )
+                    );
                 }}>
                 </Column>
             </DataTable>
@@ -96,8 +96,7 @@ export function VoucherPage() {
                              onHide={() => setIsAdding(false)}/>
             <EditVoucherModal visible={isEditable} onHide={() => setIsEditable(false)}
                               onVoucherEdited={() => refreshVouchers()} voucher={editableVoucher}/>
-            <Toast ref={toast}/>
             <ConfirmDialog/>
         </div>
-    );
+    )
 }

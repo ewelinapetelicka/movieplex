@@ -2,13 +2,14 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Film} from "../../models/film/film";
 import {Button} from "primereact/button";
-import {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {EditFilmModal} from "./components/edit-film-modal/EditFilmModal";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
 import {AddFilmModal} from "./components/add-film-modal/AddFilmModal";
 import {InputText} from "primereact/inputtext";
 import {useHttp} from "../../hooks/http/use-http";
+import {ToasterContext} from "../../context/toaster/toaster-context";
 
 export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
@@ -23,6 +24,8 @@ export function FilmsPage() {
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(2);
+    const toaster = useContext(ToasterContext);
+
 
     const http = useHttp();
 
@@ -86,15 +89,15 @@ export function FilmsPage() {
 
     function deleteFilm(id: number) {
         http.delete("films/" + id)
-        .then(() => {
-            setFilms(films.filter((film) => film.id !== id));
-            toast.current!.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
-        });
+            .then(() => {
+                setFilms(films.filter((film) => film.id !== id));
+                toaster.show({severity: 'info', summary: 'info', detail: 'Film deleted', life: 3000});
+            });
     }
 
     function filmEdited() {
         refreshFilms();
-        toast.current!.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
+        toaster.show({severity: 'info', summary: 'info', detail: 'Film updated', life: 3000});
     }
 
     return (
@@ -131,10 +134,10 @@ export function FilmsPage() {
                                     accept: () => deleteFilm(film.id),
                                     reject: () => {
                                     }
-                                })
+                                });
                             }}/>
                         </div>
-                    )
+                    );
                 }}></Column>
             </DataTable>
             <div className={"w-9 flex justify-content-end align-items-center pt-2 gap-2"}>

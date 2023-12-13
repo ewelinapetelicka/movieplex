@@ -1,10 +1,11 @@
 import {Card} from "primereact/card";
 import {Password} from "primereact/password";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {useHttp} from "../../hooks/http/use-http";
 import {User} from "../../models/user/user";
+import {ToasterContext} from "../../context/toaster/toaster-context";
 
 interface LoginPageProps{
     onLogged:(user: User)=>void;
@@ -14,6 +15,7 @@ export function LoginPage(props: LoginPageProps){
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const http= useHttp();
+    const toaster = useContext(ToasterContext);
 
     function log(){
         http.get("users", {
@@ -22,6 +24,9 @@ export function LoginPage(props: LoginPageProps){
         }).then((data: User[]) => {
             if(data.length > 0){
                 props.onLogged(data[0]);
+                toaster.show({severity: 'success', summary: 'Success', detail: 'Logged in'});
+            } else {
+                toaster.show({severity: 'error', summary: 'Error', detail: 'Wrong credentials'});
             }
         })
     }
