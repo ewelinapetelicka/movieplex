@@ -37,7 +37,7 @@ export function LoginPage(props: LoginPageProps){
                 <div className={"flex flex-column w-10 h-30rem gap-4"}>
                     <InputText type="text" placeholder="email" className={"w-12"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
                     <Password value={password} onChange={(e) => setPassword(e.target.value)} inputClassName={"w-12"}
-                              toggleMask placeholder={"password"} />
+                              toggleMask feedback={false} placeholder={"password"} />
                     <Button label={"log in"} onClick={()=>log()} />
                 </div>
             </Card>
