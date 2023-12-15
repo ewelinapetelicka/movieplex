@@ -6,21 +6,24 @@ import {useHttp} from "../../hooks/http/use-http";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Dropdown} from "primereact/dropdown";
-
+import {RepertoirePlanningModal} from "./components/repertoire-planning-modal/RepertoirePlanningModal";
 
 export function RepertoirePage() {
     const [repertoire, setRepertoire] = useState<Repertoire[]>([]);
     const [halls, setHalls] = useState<Hall[]>([]);
     const http = useHttp();
     const [selectedDay, setSelectedDay] = useState(new Date().getDay());
+    const [isEditable, setIsEditable] = useState(false);
+    const [hallId, setHallId] = useState<number>();
+
     const days = [
-        {name: "Monday", value: 1},
-        {name: "Tuesday", value: 2},
-        {name: "Wednesday", value: 3},
-        {name: "Thursday", value: 4},
-        {name: "Friday", value: 5},
-        {name: "Saturday", value: 6},
-        {name: "Sunday", value: 7}
+        {name: "Monday", value: 0},
+        {name: "Tuesday", value: 1},
+        {name: "Wednesday", value: 2},
+        {name: "Thursday", value: 3},
+        {name: "Friday", value: 4},
+        {name: "Saturday", value: 5},
+        {name: "Sunday", value: 6}
     ];
 
     useEffect(() => {
@@ -42,6 +45,11 @@ export function RepertoirePage() {
             })
     }
 
+    function openHall(hallId: number) {
+        setIsEditable(true);
+        setHallId(hallId);
+    }
+
     return (
         <div className={"w-12 flex flex-column justify-content-center align-items-center"}>
             <div className={"w-10 flex justify-content-between align-items-center"}>
@@ -49,13 +57,14 @@ export function RepertoirePage() {
                 <Dropdown value={selectedDay} onChange={(e) => setSelectedDay(e.value)}
                           optionLabel="name"
                           optionValue={'value'}
-                          options={days} placeholder={"Choose day"} ></Dropdown>
+                          scrollHeight={"500px"}
+                          options={days} placeholder={"Choose day"}></Dropdown>
             </div>
             <div className={"w-10 flex justify-content-evenly pt-5 gap-3"}>
                 {halls.map((hall) => {
                     return (
                         <div key={hall.id} className={"w-3"}>
-                            <Button label={hall.name} className={"w-12"}/>
+                            <Button label={hall.name} className={"w-12"} onClick={() => openHall(hall.id)}/>
                             <DataTable
                                 value={repertoire.filter((r) => r.hallId === hall.id).filter((e) => e.days.includes(selectedDay))}
                                 className={"w-12"}>
@@ -66,6 +75,8 @@ export function RepertoirePage() {
                     )
                 })}
             </div>
+            <RepertoirePlanningModal visible={isEditable} onHide={() => setIsEditable(false)}
+                                     hallId={hallId!}></RepertoirePlanningModal>
         </div>
     )
 }
