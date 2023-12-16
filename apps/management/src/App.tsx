@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {PrimeReactProvider} from 'primereact/api';
 import {Route, Routes} from "react-router";
 import {Header} from "./components/core/header/Header";
@@ -14,6 +14,7 @@ import {LoginPage} from "./pages/login-page/LoginPage";
 import {useStorage} from "./hooks/storage/use-storage";
 import {Toast} from "primereact/toast";
 import {ToasterContext} from "./context/toaster/toaster-context";
+import {RepertoirePlanningPage} from "./pages/repertoire-planning-page/RepertoirePlanningPage";
 
 export function App() {
     const divStyle = {height: 'calc(100vh - 5rem)'}
@@ -40,7 +41,7 @@ export function App() {
                 {!user && <LoginPage onLogged={(user: User) => logIn(user)}></LoginPage>}
                 {user && (
                     <UserContext.Provider value={user!}>
-                        <Header  onUserLogOut={()=> setUser(null)}></Header>
+                        <Header onUserLogOut={() => setUser(null)}></Header>
                         <div className={"flex"} style={divStyle}>
                             <Menu></Menu>
                             <div style={routesStyle} className={"overflow-y-auto"}>
@@ -51,6 +52,8 @@ export function App() {
                                     <Route path={"/films-page"} element={<FilmsPage></FilmsPage>}/>
                                     <Route path={"/teasers-page"} element={<TeasersPage></TeasersPage>}/>
                                     <Route path={"/repertoire"} element={<RepertoirePage></RepertoirePage>}/>
+                                    <Route path={"/repertoire-planning/:id"}
+                                           element={<RepertoirePlanningPage></RepertoirePlanningPage>}/>
                                 </Routes>
                             </div>
                         </div>

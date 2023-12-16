@@ -6,15 +6,14 @@ import {useHttp} from "../../hooks/http/use-http";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Dropdown} from "primereact/dropdown";
-import {RepertoirePlanningModal} from "./components/repertoire-planning-modal/RepertoirePlanningModal";
+import {useNavigate} from "react-router";
 
 export function RepertoirePage() {
     const [repertoire, setRepertoire] = useState<Repertoire[]>([]);
     const [halls, setHalls] = useState<Hall[]>([]);
     const http = useHttp();
     const [selectedDay, setSelectedDay] = useState(new Date().getDay());
-    const [isEditable, setIsEditable] = useState(false);
-    const [hallId, setHallId] = useState<number>();
+    const navigate = useNavigate();
 
     const days = [
         {name: "Monday", value: 0},
@@ -46,8 +45,7 @@ export function RepertoirePage() {
     }
 
     function openHall(hallId: number) {
-        setIsEditable(true);
-        setHallId(hallId);
+        navigate("/repertoire-planning/" + hallId);
     }
 
     return (
@@ -75,8 +73,6 @@ export function RepertoirePage() {
                     )
                 })}
             </div>
-            <RepertoirePlanningModal visible={isEditable} onHide={() => setIsEditable(false)}
-                                     hallId={hallId!}></RepertoirePlanningModal>
         </div>
     )
 }
