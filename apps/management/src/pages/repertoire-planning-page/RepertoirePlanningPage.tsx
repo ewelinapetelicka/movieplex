@@ -3,7 +3,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import {useEffect, useState} from "react";
 import {Hall} from "../../models/hall/hall";
 import {useHttp} from "../../hooks/http/use-http";
-import {Card} from "primereact/card";
 import {useParams} from "react-router";
 
 export function RepertoirePlanningPage() {
@@ -25,8 +24,11 @@ export function RepertoirePlanningPage() {
     }
 
     return (
-        <Card header={<h2>Plan the repertoire of {hall?.name} </h2>}>
+        <div>
+            <h2>Plan the repertoire of {hall?.name}</h2>
             <FullCalendar
+                allDaySlot={false}
+                headerToolbar={false}
                 height={"700px"}
                 plugins={[timeGridPlugin]}
                 initialView="timeGridWeek"
@@ -38,6 +40,6 @@ export function RepertoirePlanningPage() {
                 slotMinTime={"09:00:00"}
                 slotMaxTime={"23:00:00"}
             />
-        </Card>
+        </div>
     )
 }

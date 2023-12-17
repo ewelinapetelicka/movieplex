@@ -19,4 +19,27 @@ body {
 :root {
     --fc-border-color: #ffffff;
     --fc-daygrid-event-dot-width: 5px;
+
+
+    .fc-widget-header {
+        background-color: #60a5fa;
+    }
+
+    .fc-col-header-cell {
+        background-color: #60a5fa;
+    }
+
+    .fc-timegrid-slot-label {
+        background-color: #60a5fa;
+    }
+
+    .fc-timegrid-axis {
+        background-color: #60a5fa;
+    }
+
+
+    .fc .fc-timegrid-col.fc-day-today {
+        background-color: #ffffff;
+        opacity: 20%;
+    }
 }
