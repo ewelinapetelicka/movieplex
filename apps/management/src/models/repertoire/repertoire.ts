@@ -1,3 +1,5 @@
+import {Film} from "../film/film";
+
 export interface Repertoire {
     "id": number,
     "filmId": number,
@@ -7,4 +9,6 @@ export interface Repertoire {
     "language": string,
     "enSubtitles": boolean,
     "days": number[],
+
+    "film"?: Film
 }

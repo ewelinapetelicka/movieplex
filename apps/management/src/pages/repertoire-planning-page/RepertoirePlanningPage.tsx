@@ -4,15 +4,20 @@ import {useEffect, useState} from "react";
 import {Hall} from "../../models/hall/hall";
 import {useHttp} from "../../hooks/http/use-http";
 import {useParams} from "react-router";
+import {Repertoire} from "../../models/repertoire/repertoire";
+import {EventSourceInput} from "@fullcalendar/core";
+import {addMinutesToStringTime} from "../../utils/time/time.utils";
 
 export function RepertoirePlanningPage() {
     const params = useParams();
     const [hall, setHall] = useState<Hall>();
     const http = useHttp();
+    const [events, setEvents] = useState<EventSourceInput>([]);
 
     useEffect(() => {
         if (params.id) {
             getHall();
+            getRepertoire();
         }
     }, []);
 
@@ -23,6 +28,21 @@ export function RepertoirePlanningPage() {
             })
     }
 
+    function getRepertoire() {
+        http.get('repertoire', {hallId: params.id, _expand: 'film'})
+            .then((data) => {
+                setEvents(data.map((el: Repertoire) => {
+                    return {
+                        title: el.film?.title,
+                        startTime: el.time,
+                        endTime: addMinutesToStringTime(el.time, el.film?.duration! + 30),
+                        daysOfWeek: el.days
+                    }
+                }));
+            })
+    }
+
+
     return (
         <div>
             <h2>Plan the repertoire of {hall?.name}</h2>
@@ -32,11 +52,7 @@ export function RepertoirePlanningPage() {
                 height={"700px"}
                 plugins={[timeGridPlugin]}
                 initialView="timeGridWeek"
-                events={[
-                    {title: 'event 1', date: '2023-12-20T10:30:00', end: '2023-12-20T12:30:00'},
-                    {title: 'event 2', date: '2023-12-20T12:00:00', end: '2023-12-20T13:30:00'},
-                    {title: 'event 3', date: '2023-12-20T14:00:00', end: '2023-12-20T15:30:00'}
-                ]}
+                events={events}
                 slotMinTime={"09:00:00"}
                 slotMaxTime={"23:00:00"}
             />
