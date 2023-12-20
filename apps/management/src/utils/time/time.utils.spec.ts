@@ -1,4 +1,4 @@
-import {addMinutesToStringTime} from "./time.utils";
+import {addMinutesToStringTime, createDateFromTime} from "./time.utils";
 
 describe('TimeUtils', () => {
     it('should add minutes to time correctly ', () => {
@@ -9,4 +9,9 @@ describe('TimeUtils', () => {
         expect(addMinutesToStringTime("16:00", 0)).toBe("16:00");
         expect(addMinutesToStringTime("23:59", 1)).toBe("00:00");
     });
+    it("should create date from time correctly", () => {
+        expect(createDateFromTime("12:10").getHours()).toBe(12);
+        expect(createDateFromTime("12:10").getMinutes()).toBe(10);
+    });
 });
+

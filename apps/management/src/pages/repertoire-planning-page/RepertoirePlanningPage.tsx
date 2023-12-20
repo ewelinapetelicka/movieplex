@@ -7,12 +7,18 @@ import {useParams} from "react-router";
 import {Repertoire} from "../../models/repertoire/repertoire";
 import {EventSourceInput} from "@fullcalendar/core";
 import {addMinutesToStringTime} from "../../utils/time/time.utils";
+import {PlanningDetails} from "./components/planning-details/PlanningDetails";
+import interactionPlugin from '@fullcalendar/interaction';
+import {Button} from "primereact/button";
+
 
 export function RepertoirePlanningPage() {
     const params = useParams();
     const [hall, setHall] = useState<Hall>();
     const http = useHttp();
     const [events, setEvents] = useState<EventSourceInput>([]);
+    const [isVisible, setIsVisible] = useState(false);
+    const [repertoireSelected, setRepertoireSelected] = useState<Repertoire>();
 
     useEffect(() => {
         if (params.id) {
@@ -36,26 +42,37 @@ export function RepertoirePlanningPage() {
                         title: el.film?.title,
                         startTime: el.time,
                         endTime: addMinutesToStringTime(el.time, el.film?.duration! + 30),
-                        daysOfWeek: el.days
+                        daysOfWeek: el.days,
+                        repertoire: el
                     }
                 }));
             })
     }
 
-
     return (
         <div>
-            <h2>Plan the repertoire of {hall?.name}</h2>
+            <div className={" p-2 flex justify-content-between align-items-center"}>
+                <h2>Plan the repertoire of {hall?.name}</h2>
+                <Button onClick={(e) => {
+                    setIsVisible(true);
+                    setRepertoireSelected(undefined);
+                }}>Add new</Button>
+            </div>
             <FullCalendar
                 allDaySlot={false}
                 headerToolbar={false}
                 height={"700px"}
-                plugins={[timeGridPlugin]}
+                plugins={[timeGridPlugin, interactionPlugin]}
                 initialView="timeGridWeek"
                 events={events}
                 slotMinTime={"09:00:00"}
                 slotMaxTime={"23:00:00"}
+                eventClick={(e) => {
+                    setIsVisible(true);
+                    setRepertoireSelected(e.event.extendedProps.repertoire);
+                }}
             />
+            <PlanningDetails show={isVisible} onHide={() => setIsVisible(false)} repertoireEdit={repertoireSelected}/>
         </div>
     )
 }

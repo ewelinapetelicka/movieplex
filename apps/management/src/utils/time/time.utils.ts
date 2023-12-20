@@ -1,12 +1,4 @@
-import {Simulate} from "react-dom/test-utils";
-
 export function addMinutesToStringTime(time: string, minutes: number): string {
-    /*const [hours, minutesString] = time.split(':');
-    const minutesNumber = parseInt(minutesString, 10);
-    const totalMinutes = parseInt(hours, 10) * 60 + minutesNumber + minutes;
-    const newHours = Math.floor(totalMinutes / 60);
-    const newMinutes = totalMinutes % 60;
-    return `${newHours}:${newMinutes < 10 ? '0' : ''}${newMinutes}`;*/
 
     const hoursInMinutes = (parseInt(time.slice(0, 2))) * 60;
     const minutesFromString = parseInt(time.slice(3, 5));
@@ -20,5 +12,12 @@ export function addMinutesToStringTime(time: string, minutes: number): string {
     }
     const newMinutes = Math.floor(totalMinutes % 60) < 10 ? "0" + Math.floor(totalMinutes % 60) : Math.floor(totalMinutes % 60)
     return newHours + ":" + newMinutes;
+
+}
+
+export function createDateFromTime(time: string) {
+    const timeArr = time.split(":");
+    const epoch = new Date().setHours(parseInt(timeArr[0]), parseInt(timeArr[1]));
+    return new Date(epoch);
 
 }

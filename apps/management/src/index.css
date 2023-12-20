@@ -37,9 +37,12 @@ body {
         background-color: #60a5fa;
     }
 
-
     .fc .fc-timegrid-col.fc-day-today {
-        background-color: #ffffff;
-        opacity: 20%;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .p-selectbutton .p-button-label {
+        font-size: 12px;
+        padding: 0;
     }
 }
