@@ -33,18 +33,23 @@ export function Panel(props: PanelProps) {
     }, [])
 
     return (
-        <div>
-            <div className={"w-full h-10 bg-orange-400 text-gray-900 font-bold flex items-center pl-4 mb-2"}>{props.header}</div>
-            <div className={"flex justify-evenly"}>
+        <div className={'h-full '}>
+            <div
+                className={"w-full h-10 bg-orange-400 text-gray-900 font-bold flex items-center pl-4 mb-2 text-xl"}>{props.header}</div>
+            <div className={" flex justify-evenly items-center"} style={{height: "calc(100% - 50px)"}}>
                 {
                     (props.isAvailable ? films : teasers).map((el) => {
-                return <img src={"/posters/" + el.poster} className={"w-[240px] " + (props.isAvailable? "cursor-pointer" : '')} key={el.id} onClick={()=>{
-                    if (props.isAvailable){
-                        navigate("/film/" + el.id)
-                    }
-                }}></img>
-            })
-                }</div>
+                        return <img src={"/posters/" + el.poster}
+                                    alt={'movie poster'}
+                                    className={"w-[240px] " + (props.isAvailable ? "cursor-pointer" : '')} key={el.id}
+                                    onClick={() => {
+                                        if (props.isAvailable) {
+                                            navigate("/film/" + el.id)
+                                        }
+                                    }}></img>
+                    })
+                }
+            </div>
         </div>
     )
 }

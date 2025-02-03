@@ -23,7 +23,7 @@ export function FilmDetails(props: FilmDetailsProps) {
                 </div>
                 <div>
                     <p className={"pb-2 pr-10"}>{props.film?.description}</p>
-                    <p className={"flex gap-3"}>{props.film?.genre.map((el) => {
+                    <p className={"flex gap-3 pt-2"}>{props.film?.genre.map((el) => {
                         return (
                             <Chip key={el} text={el}></Chip>
                         )

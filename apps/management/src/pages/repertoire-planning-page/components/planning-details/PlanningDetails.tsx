@@ -1,5 +1,5 @@
 import {Sidebar} from "primereact/sidebar";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Film} from "../../../../models/film/film";
 import {useHttp} from "../../../../hooks/http/use-http";
 import {Dropdown} from "primereact/dropdown";
@@ -7,19 +7,22 @@ import {Button} from "primereact/button";
 import {Repertoire} from "../../../../models/repertoire/repertoire";
 import {RadioButton} from "primereact/radiobutton";
 import {Calendar} from "primereact/calendar";
-import {addMinutesToStringTime, createDateFromTime} from "../../../../utils/time/time.utils";
+import {addMinutesToStringTime, createDateFromTime, createTimeFromDate} from "../../../../utils/time/time.utils";
 import {SelectButton} from "primereact/selectbutton";
+import {ToasterContext} from "../../../../context/toaster/toaster-context";
 
 interface PlanningDetailsProps {
     show: boolean;
     onHide: () => void;
     repertoireEdit?: Repertoire;
+    repertoireAdd?: boolean;
 }
 
 export function PlanningDetails(props: PlanningDetailsProps) {
     const [films, setFilms] = useState<Film[]>();
     const [filmId, setFilmId] = useState<number>();
     const http = useHttp();
+    const toasts = useContext(ToasterContext);
     const [startTime, setStartTime] = useState<Date | null | undefined>(new Date());
     const [endTime, setEndTime] = useState<string>();
     const [subtitle, setSubtitle] = useState<boolean>();
@@ -28,6 +31,7 @@ export function PlanningDetails(props: PlanningDetailsProps) {
     const [days, setDays] = useState<number[]>();
     const [isFilled, setIsFilled] = useState(false);
     const languageOptions = ["EN", "ES", "DE", "FR", "IT", "RU"];
+
     const dayOptions = [
         {name: 'Monday', value: 1},
         {name: 'Tuesday', value: 2},
@@ -41,6 +45,21 @@ export function PlanningDetails(props: PlanningDetailsProps) {
     useEffect(() => {
         getFilms();
     }, []);
+
+    useEffect(() => {
+        if (startTime && language && showingIn && days?.length) {
+            setIsFilled(true);
+        } else {
+            setIsFilled(false);
+        }
+    }, [
+        startTime,
+        endTime,
+        language,
+        subtitle,
+        showingIn,
+        days
+    ]);
 
     useEffect(() => {
         setFilmId(props.repertoireEdit ? props.repertoireEdit.filmId : undefined);
@@ -59,8 +78,35 @@ export function PlanningDetails(props: PlanningDetailsProps) {
             })
     }
 
-    function saveRepertoire() {
-        return;
+    function saveAddedRepertoire() {
+        http.post("repertoire/", {
+            hallId: props.repertoireEdit?.hallId,
+            filmId: filmId,
+            time: createTimeFromDate(startTime!),
+            enSubtitles: subtitle,
+            language: language,
+            showingIn: showingIn,
+            days: days
+        })
+            .then(() => {
+                props.onHide();
+                toasts.show({severity: "success", summary: "Success", detail: "Repertoire added"})
+            })
+    }
+
+    function saveEditedRepertoire() {
+        http.patch("repertoire/" + props.repertoireEdit?.id, {
+            filmId: filmId,
+            time: createTimeFromDate(startTime!),
+            enSubtitles: subtitle,
+            language: language,
+            showingIn: showingIn,
+            days: days
+        })
+            .then(() => {
+                props.onHide();
+                toasts.show({severity: "success", summary: "Success", detail: "Repertoire edited"})
+            })
     }
 
     function endTimeCount() {
@@ -82,17 +128,20 @@ export function PlanningDetails(props: PlanningDetailsProps) {
                 <Dropdown options={films} optionValue={'id'} optionLabel={'title'} scrollHeight={"500px"}
                           value={filmId} onChange={(e) => setFilmId(e.value)} placeholder={"film title"}/>
                 <Calendar value={startTime} onChange={(e) => setStartTime(e.value)} timeOnly
-                          placeholder={"seance start time"}/>
+                          placeholder={"seance start time"} selectionMode={'single'}/>
                 <p>Expected seance end time: {endTimeCount()}</p>
                 <div>
                     <p>English subtitles: </p>
                     <div className="flex flex-wrap justify-content-evenly">
                         <div className="flex align-items-center">
-                            <RadioButton value="without" onChange={(e) => setSubtitle(e.value)}/>
+                            <RadioButton value={false} onChange={(e) => setSubtitle(e.value)}
+                                         name={"subtitle"}
+                                         checked={subtitle === false}/>
                             <label htmlFor="without" className="ml-2">Without </label>
                         </div>
                         <div className="flex align-items-center">
-                            <RadioButton value="with" onChange={(e) => setSubtitle(e.value)}/>
+                            <RadioButton value={true} onChange={(e) => setSubtitle(e.value)}
+                                         name={"subtitle"} checked={subtitle === true}/>
                             <label htmlFor="with" className="ml-2">With </label>
                         </div>
                     </div>
@@ -102,13 +151,13 @@ export function PlanningDetails(props: PlanningDetailsProps) {
                     <p>Showing in: </p>
                     <div className="flex flex-wrap justify-content-evenly">
                         <div className="flex align-items-center">
-                            <RadioButton value="2d" onChange={(e) => setShowingIn(e.value)}
-                                         checked={showingIn === "2D"}/>
+                            <RadioButton value="2D" onChange={(e) => setShowingIn(e.value)}
+                                         checked={showingIn === "2D"} name={"showingIn"}/>
                             <label htmlFor="2d" className="ml-2">2D </label>
                         </div>
                         <div className="flex align-items-center">
-                            <RadioButton value="3d" onChange={(e) => setShowingIn(e.value)}
-                                         checked={showingIn === "3D"}/>
+                            <RadioButton value="3D" onChange={(e) => setShowingIn(e.value)}
+                                         checked={showingIn === "3D"} name={"showingIn"}/>
                             <label htmlFor="3d" className="ml-2">3D</label>
                         </div>
                     </div>
@@ -120,7 +169,8 @@ export function PlanningDetails(props: PlanningDetailsProps) {
             </div>
             <div className={"w-full flex justify-content-evenly pt-4"}>
                 <Button icon="pi pi-times" severity="danger" onClick={() => props.onHide()}/>
-                <Button severity="success" label={"Save"} disabled={!isFilled} onClick={() => saveRepertoire()}/>
+                <Button severity="success" label={"Save"} disabled={!isFilled}
+                        onClick={() => props.repertoireAdd === true ? saveAddedRepertoire() : saveEditedRepertoire()}/>
             </div>
         </Sidebar>
     )

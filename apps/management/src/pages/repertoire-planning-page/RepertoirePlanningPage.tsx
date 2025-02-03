@@ -19,6 +19,7 @@ export function RepertoirePlanningPage() {
     const [events, setEvents] = useState<EventSourceInput>([]);
     const [isVisible, setIsVisible] = useState(false);
     const [repertoireSelected, setRepertoireSelected] = useState<Repertoire>();
+    const [isRepertoireAddingClick, setIsRepertoireAddingClick] = useState<boolean>(false);
 
     useEffect(() => {
         if (params.id) {
@@ -32,6 +33,11 @@ export function RepertoirePlanningPage() {
             .then((data) => {
                 setHall(data)
             })
+    }
+
+    function refreshRepertoire() {
+        getRepertoire();
+        setIsVisible(false);
     }
 
     function getRepertoire() {
@@ -53,9 +59,10 @@ export function RepertoirePlanningPage() {
         <div>
             <div className={" p-2 flex justify-content-between align-items-center"}>
                 <h2>Plan the repertoire of {hall?.name}</h2>
-                <Button onClick={(e) => {
+                <Button onClick={() => {
                     setIsVisible(true);
                     setRepertoireSelected(undefined);
+                    setIsRepertoireAddingClick(true);
                 }}>Add new</Button>
             </div>
             <FullCalendar
@@ -70,9 +77,11 @@ export function RepertoirePlanningPage() {
                 eventClick={(e) => {
                     setIsVisible(true);
                     setRepertoireSelected(e.event.extendedProps.repertoire);
+                    setIsRepertoireAddingClick(false);
                 }}
             />
-            <PlanningDetails show={isVisible} onHide={() => setIsVisible(false)} repertoireEdit={repertoireSelected}/>
+            <PlanningDetails show={isVisible} onHide={() => refreshRepertoire()} repertoireEdit={repertoireSelected}
+                             repertoireAdd={isRepertoireAddingClick}/>
         </div>
     )
 }

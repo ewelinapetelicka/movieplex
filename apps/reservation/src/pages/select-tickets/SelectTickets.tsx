@@ -31,7 +31,7 @@ export function SelectTickets() {
                 }
                 setRepertoire(data)
             })
-            .catch(error => setIsError(true))
+            .catch(() => setIsError(true))
     }, []);
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export function SelectTickets() {
                 }
                 setFilm(data)
             })
-            .catch(error => setIsError(true))
+            .catch(() => setIsError(true))
     }, [repertoire]);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export function SelectTickets() {
                 }
                 setHall(data)
             })
-            .catch(error => setIsError(true))
+            .catch(() => setIsError(true))
     }, [repertoire]);
 
     if (!repertoire || !film || !hall) {
@@ -76,7 +76,7 @@ export function SelectTickets() {
         <div className={" h-full text-blue-50 pl-8"}>
             <div className={"h-full flex flex-row justify-between"}>
                 <div className={"w-9/12 pr-6"}>
-                    <div className={"flex flex-col gap-3"}>
+                    <div className={"flex flex-col gap-3 pt-8"}>
                         <Title text={film.title} key={film.id}></Title>
                         <div className={"flex gap-4"}>
                             <span>{film.duration} min</span>
@@ -92,22 +92,21 @@ export function SelectTickets() {
                         </div>
                     </div>
                     <Recap seatPicked={seatPicked} onSeatRemoved={(seat) => {
-                        let newArr = [];
-                        newArr = seatPicked.filter((el) => {
+                        let newArr = seatPicked.filter((el) => {
                             return el.row !== seat.row || el.col !== seat.col;
                         })
                         setSeatPicked(newArr)
                     }}
-                    onSeatType={(seat, seatType)=> {
-                        let newArray = seatPicked.map((el)=>{
-                            if (seat === el) {
-                                el.type = seatType;
-                            }
-                            return el;
-                        })
-                        setSeatPicked(newArray)
+                           onSeatType={(seat, seatType) => {
+                               let newArray = seatPicked.map((el) => {
+                                   if (seat === el) {
+                                       el.type = seatType;
+                                   }
+                                   return el;
+                               })
+                               setSeatPicked(newArray)
 
-                    }}></Recap>
+                           }}></Recap>
                 </div>
                 <SeatPicker seatPicked={seatPicked}
                             onSetSeat={(seat: Seat) => {

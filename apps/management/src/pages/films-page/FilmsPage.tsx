@@ -25,10 +25,7 @@ export function FilmsPage() {
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(2);
     const toaster = useContext(ToasterContext);
-
-
     const http = useHttp();
-
     const ageRestriction = [
         {name: "none", value: null},
         {name: "6+", value: 6},
