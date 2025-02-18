@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Voucher} from "../../models/voucher/voucher";
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {Button} from "primereact/button";
 import {AddVoucherModal} from "./components/add-voucher-modal/AddVoucherModal";
 import {EditVoucherModal} from "./components/edit-voucher-modal/EditVoucherModal";
-import {Toast} from "primereact/toast";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
-import {InputText} from "primereact/inputtext";
 import {ToasterContext} from "../../context/toaster/toaster-context";
+import {Search} from "../../components/search/Search";
 
 export function VoucherPage() {
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
@@ -42,7 +41,7 @@ export function VoucherPage() {
             method: 'DELETE',
         }).then(() => {
             setVouchers(vouchers.filter((voucher) => voucher.id !== id));
-                toaster.show({severity: 'info', summary: 'info', detail: 'Voucher deleted', life: 3000});
+            toaster.show({severity: 'info', summary: 'info', detail: 'Voucher deleted', life: 3000});
 
         });
     }
@@ -52,23 +51,13 @@ export function VoucherPage() {
     }
 
     return (
-        <div className={"flex flex-column justify-content:center pt-3 w-9"}>
-            <div className={'flex  justify-content-between'}>
-                <div
-                    className={"text-3xl h-10 font-bold flex justify-content-start items-center pt-3 pb-2"}>Vouchers
-                </div>
-                <div className={"flex gap-2 align-items-center justify-content-end w-9"}>
-                    <span className=" flex p-input-icon-left align-items-center">
-                        <InputText placeholder="Search" value={query}
-                                   onChange={(event) => setQuery(event.target.value)}/>
-                        <Button icon={"pi pi-search"} onClick={() => searchVoucher()}/>
-                    </span>
-                    <Button label={"Add new"} className={"m-2"} onClick={() => setIsAdding(true)}/>
-                </div>
-            </div>
+        <div className={"w-full h-12 flex justify-content-center  flex-column"}>
+            <h1>Vouchers</h1>
+            <Search query={query} isAdding={() => setIsAdding(true)} onChangeSetQuery={setQuery}
+                    onClickSearch={searchVoucher}></Search>
             <DataTable value={filteredVouchers} paginator rows={5}>
-                <Column field="name" header="NAME"></Column>
-                <Column field="discount" header="DISCOUNT"></Column>
+                <Column field="name" header="NAME" style={{width: '50%'}}></Column>
+                <Column field="discount" header="DISCOUNT" style={{width: '25%'}}></Column>
                 <Column header="ACTIONS" body={(voucher: Voucher) => {
                     return (
                         <div className={"flex gap-2"}>

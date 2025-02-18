@@ -49,16 +49,19 @@ export function RepertoirePage() {
     }
 
     return (
-        <div className={"w-12 flex flex-column justify-content-center align-items-center"}>
-            <div className={"w-10 flex justify-content-between align-items-center"}>
+        <div className={"w-full flex flex-column justify-content-center align-items-center"}>
+            <div className={"w-full flex flex-column align-items-start"}>
                 <h1>Repertoire creator</h1>
                 <Dropdown value={selectedDay} onChange={(e) => setSelectedDay(e.value)}
                           optionLabel="name"
                           optionValue={'value'}
                           scrollHeight={"500px"}
-                          options={days} placeholder={"Choose day"}></Dropdown>
+                          className={'flex align-self-end'}
+                          options={days} placeholder={"Choose day"}>
+
+                </Dropdown>
             </div>
-            <div className={"w-10 flex justify-content-evenly pt-5 gap-3"}>
+            <div className={"w-full flex justify-content-evenly pt-5 gap-3"}>
                 {halls.map((hall) => {
                     return (
                         <div key={hall.id} className={"w-3"}>

@@ -1,4 +1,4 @@
-import {Ref, useEffect} from "react";
+import {useEffect} from "react";
 
 export function useClickOutside(ref: any, fn: () => void) {
     useEffect(() => {

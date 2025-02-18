@@ -1,18 +1,17 @@
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Film} from "../../models/film/film";
 import {Voucher} from "../../models/voucher/voucher";
 import {DashboardCardWidget} from "./components/dashboard-card-widget/DashboardCardWidget";
 import {useNavigate} from "react-router";
 import {Teaser} from "../../models/teaser/teaser";
-import {UserContext} from "../../context/user/user-context";
+import {useUser} from "../../hooks/user/use-user";
 
 export function DashboardPage() {
     const [vouchers, setVouchers] = useState<Voucher[]>([]);
     const navigate = useNavigate();
     const [films, setFilms] = useState<Film[]>([]);
     const [teasers, setTeasers] = useState<Teaser[]>([]);
-
-    const user = useContext(UserContext)
+    const user = useUser();
 
     useEffect(() => {
         getFilms();
@@ -45,9 +44,9 @@ export function DashboardPage() {
     }
 
     return (
-        <div>
-            <h2>Hello {user.name}!</h2>
-            <div className={"flex w-full gap-4 h-12rem justify-content-evenly align-items-center pr-4 pl-4"}>
+        <div className={'flex flex-column '}>
+            <h1>Hello {user.firstName}</h1>
+            <div className={"flex w-full gap-4 h-12rem justify-content-evenly align-items-center "}>
                 <DashboardCardWidget
                     title={"Vouchers"}
                     value={vouchers.length}
@@ -62,7 +61,7 @@ export function DashboardPage() {
                     title={"Coming soon"}
                     icon={"pi pi-calendar"}
                     value={teasers.length}
-                    onClick={() => navigate("/films-page")}/>
+                    onClick={() => navigate("/teasers-page")}/>
             </div>
         </div>
     )

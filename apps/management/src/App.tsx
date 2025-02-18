@@ -44,16 +44,16 @@ export function App() {
                         <Header onUserLogOut={() => setUser(null)}></Header>
                         <div className={"flex"} style={divStyle}>
                             <Menu></Menu>
-                            <div style={routesStyle} className={"overflow-y-auto"}>
+                            <div style={routesStyle} className={"overflow-y-auto p-5"}>
                                 <Routes>
                                     <Route path={"/dashboard-page"} element={<DashboardPage></DashboardPage>}/>
-                                    <Route path={"/hall-page"} element={<DashboardPage></DashboardPage>}/>
                                     <Route path={"/voucher-page"} element={<VoucherPage></VoucherPage>}/>
                                     <Route path={"/films-page"} element={<FilmsPage></FilmsPage>}/>
                                     <Route path={"/teasers-page"} element={<TeasersPage></TeasersPage>}/>
                                     <Route path={"/repertoire"} element={<RepertoirePage></RepertoirePage>}/>
                                     <Route path={"/repertoire-planning/:id"}
                                            element={<RepertoirePlanningPage></RepertoirePlanningPage>}/>
+                                    <Route path={"*"} element={<DashboardPage></DashboardPage>}/>
                                 </Routes>
                             </div>
                         </div>

@@ -7,22 +7,22 @@ import {useHttp} from "../../hooks/http/use-http";
 import {User} from "../../models/user/user";
 import {ToasterContext} from "../../context/toaster/toaster-context";
 
-interface LoginPageProps{
-    onLogged:(user: User)=>void;
+interface LoginPageProps {
+    onLogged: (user: User) => void;
 }
 
-export function LoginPage(props: LoginPageProps){
+export function LoginPage(props: LoginPageProps) {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const http= useHttp();
+    const http = useHttp();
     const toaster = useContext(ToasterContext);
 
-    function log(){
+    function log() {
         http.get("users", {
-            email:email,
+            email: email,
             password: password,
         }).then((data: User[]) => {
-            if(data.length > 0){
+            if (data.length > 0) {
                 props.onLogged(data[0]);
                 toaster.show({severity: 'success', summary: 'Success', detail: 'Logged in'});
             } else {
@@ -31,16 +31,18 @@ export function LoginPage(props: LoginPageProps){
         })
     }
 
-    return(
+    return (
         <div className={"h-screen w-full flex justify-content-center align-items-center"}>
-            <Card className={"w-8 h-30rem pl-4 gap-2 pr-4"} title={"Login"}>
-                <div className={"flex flex-column w-10 h-30rem gap-4"}>
-                    <InputText type="text" placeholder="email" className={"w-12"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <div className={' w-8'}>
+                <Card className={"w-full h-30rem flex justify-content-center align-items-center"}
+                      title={"Login"}>
+                    <InputText type="text" placeholder="email" className={"w-12 mb-4"} value={email}
+                               onChange={(e) => setEmail(e.target.value)}/>
                     <Password value={password} onChange={(e) => setPassword(e.target.value)} inputClassName={"w-12"}
-                              toggleMask feedback={false} placeholder={"password"} />
-                    <Button label={"log in"} onClick={()=>log()} />
-                </div>
-            </Card>
+                              toggleMask feedback={false} placeholder={"password"} className={'w-12 mb-4'}/>
+                    <Button label={"log in"} onClick={() => log()}/>
+                </Card>
+            </div>
         </div>
     )
 }

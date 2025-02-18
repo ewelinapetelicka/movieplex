@@ -7,9 +7,11 @@ import {EditFilmModal} from "./components/edit-film-modal/EditFilmModal";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
 import {AddFilmModal} from "./components/add-film-modal/AddFilmModal";
-import {InputText} from "primereact/inputtext";
 import {useHttp} from "../../hooks/http/use-http";
 import {ToasterContext} from "../../context/toaster/toaster-context";
+import {Search} from "../../components/search/Search";
+import {genre} from "../../utils/genre";
+import {ageRestriction} from "../../utils/ageRestrictions";
 
 export function FilmsPage() {
     const [films, setFilms] = useState<Film[]>([]);
@@ -23,21 +25,10 @@ export function FilmsPage() {
     const toast = useRef<Toast>(null);
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const [pageSize, setPageSize] = useState(2);
+    const pageSize = 5;
     const toaster = useContext(ToasterContext);
     const http = useHttp();
-    const ageRestriction = [
-        {name: "none", value: null},
-        {name: "6+", value: 6},
-        {name: "12+", value: 12},
-        {name: "18+", value: 18}
-    ];
     const [filteredGenre, setFilteredGenre] = useState<string[]>([]);
-
-    const genre = ["Action", "Adventure", "Comedy", "Crime", "Fantasy", "Historical", "Historical fiction",
-        "Horror", "Magical realism", "Mystery", "Paranoid Fiction", "Philosophical", "Political", "Romance", "Saga",
-        "Satire", "Science fiction", "Social", "Speculative", "Thriller", "Urban", "Western", "Animation", "Live-action",
-        "Superhero", "Supernatural", "Kids", "Sci-fi", "Romance", "Drama", "Horror"];
 
     const search = (event: any) => {
         setTimeout(() => {
@@ -98,24 +89,12 @@ export function FilmsPage() {
     }
 
     return (
-        <div className={"w-12 h-12 flex justify-content-center align-items-center flex-column"}>
-            <div className={"w-10 flex justify-content-between pt-4 pb-3"}>
-                <h1>FilmsPage</h1>
-                <div className={"flex gap-4 align-items-center"}>
-                    <span className=" flex p-input-icon-left align-items-center">
-                        <InputText placeholder="Search" value={query}
-                                   onChange={(event) => setQuery(event.target.value)}/>
-                        <Button label={"Search"} onClick={() => searchFilm()}
-                                icon={"pi pi-search"}/>
-                    </span>
-                    <Button severity="secondary" className={"h-3rem"}
-                            label={"Add new"} onClick={() => {
-                        setIsAdding(true);
-                    }}/>
-                </div>
-            </div>
-            <DataTable value={pagedFilms} tableStyle={{width: '90rem'}}>
-                <Column field="title" header="TITLE"></Column>
+        <div className={"w-full h-12 flex justify-content-center flex-column"}>
+            <h1>Films</h1>
+            <Search isAdding={() => setIsAdding(true)} query={query} onChangeSetQuery={setQuery}
+                    onClickSearch={searchFilm}></Search>
+            <DataTable value={pagedFilms} tableStyle={{width: '100%', fontSize: 'large'}} paginator rows={pageSize}>
+                <Column field="title" header="TITLE" style={{width: '85%'}}></Column>
                 <Column header="ACTIONS" body={(film: Film) => {
                     return (
                         <div className={"flex gap-2"}>
@@ -137,19 +116,12 @@ export function FilmsPage() {
                     );
                 }}></Column>
             </DataTable>
-            <div className={"w-9 flex justify-content-end align-items-center pt-2 gap-2"}>
-                <Button severity="secondary" onClick={() => setPage(page - 1)}
-                        disabled={page === 0} icon={"pi pi-angle-left"}/>
-                <b>{page + 1} / </b>
-                <b>{totalPages + 1}</b>
-                <Button severity="secondary" onClick={() => setPage(page + 1)}
-                        disabled={page === totalPages}
-                        icon={"pi pi-angle-right"}/>
-            </div>
-            <EditFilmModal visible={isEditable} film={editableFilm} onHide={() => setIsEditable(false)}
-                           onFilmEdited={() => filmEdited()} ageRestriction={ageRestriction} genre={genre}
-                           search={search}
-                           filteredGenre={filteredGenre}/>
+            {editableFilm && (
+                <EditFilmModal visible={isEditable} film={editableFilm} onHide={() => setIsEditable(false)}
+                               onFilmEdited={() => filmEdited()} ageRestriction={ageRestriction} genre={genre}
+                               search={search}
+                               filteredGenre={filteredGenre}/>
+            )}
             <AddFilmModal visible={isAdding} onHide={() => setIsAdding(false)}
                           onFilmAdded={() => newFilm} ageRestriction={ageRestriction} genre={genre} search={search}
                           filteredGenre={filteredGenre}/>

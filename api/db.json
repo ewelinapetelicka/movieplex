@@ -143,23 +143,133 @@
   "teasers": [
     {
       "id": 1,
-      "poster": "dinosaurs.jpg"
+      "poster": "dinosaurs.jpg",
+      "title": "Dinosaur era",
+      "director": "Jonathan Reeves",
+      "studio": "Prime Motion Pictures",
+      "genre": [
+        "Science Fiction",
+        "Adventure",
+        "Action"
+      ],
+      "production": "USA 2024",
+      "releaseDate": "2024-07-18",
+      "cast": [
+        "Logan Carter",
+        "Nathan Reynolds",
+        "Emma Holloway",
+        "Derek Marshall",
+        "Sophia Hayes",
+        "Brandon Cruz",
+        "Olivia Vaughn",
+        "Jack Rourke"
+      ],
+      "teaserReleaseDate": "2024-03-10",
+      "earlyRating": "5"
     },
     {
       "id": 2,
-      "poster": "devil.jpg"
+      "poster": "devil.jpg",
+      "title": "The Nyx Metre",
+      "director": "Damien Holloway",
+      "studio": "Dark Realm Productions",
+      "genre": [
+        "Horror",
+        "Supernatural",
+        "Thriller"
+      ],
+      "production": "USA 2024",
+      "releaseDate": "2024-10-31",
+      "cast": [
+        "Victor Graves",
+        "Selene Moore",
+        "Damian Cross",
+        "Isabella Kane",
+        "Ethan Voss",
+        "Marcus Langley",
+        "Raven Holloway",
+        "Julian Mercer"
+      ],
+      "teaserReleaseDate": "2024-5-7",
+      "earlyRating": "8"
     },
     {
       "id": 3,
-      "poster": "elf.jpg"
+      "poster": "elf.jpg",
+      "title": "Eliffs: The Ancestral Oath",
+      "director": "Laurent Everwood",
+      "studio": "Eldoria Films",
+      "genre": [
+        "Fantasy",
+        "Adventure",
+        "Drama"
+      ],
+      "production": "USA 2024",
+      "releaseDate": "2024-12-15",
+      "cast": [
+        "Elias Thornwood",
+        "Rowan Everhart",
+        "Sylas Vael",
+        "Lorien Duskbane",
+        "Seraphina Moonveil",
+        "Alden Stormrider",
+        "Eowen Starfall",
+        "Thalorin Nightshade"
+      ],
+      "teaserReleaseDate": "2024-8-22",
+      "earlyRating": "9"
     },
     {
       "id": 4,
-      "poster": "romance.jpg"
+      "poster": "romance.jpg",
+      "title": "Heartstrings",
+      "director": "Samantha Wells",
+      "studio": "Golden Hour Studios",
+      "genre": [
+        "Romance",
+        "Drama",
+        "Coming-of-age"
+      ],
+      "production": "USA 2024",
+      "releaseDate": "2024-06-21",
+      "cast": [
+        "Sophie Carter",
+        "Ethan Hayes",
+        "Lily Thompson",
+        "Noah Bennett",
+        "Ava Sinclair",
+        "Ryan Matthews",
+        "Olivia Reed",
+        "James Holloway"
+      ],
+      "teaserReleaseDate": "2024-01-24",
+      "earlyRating": "4"
     },
     {
       "id": 5,
-      "poster": "western.jpg"
+      "poster": "western.jpg",
+      "title": "Dust and Glory",
+      "director": "Clint Lawson",
+      "studio": "Frontier Motion Pictures",
+      "genre": [
+        "Western",
+        "Action",
+        "Drama"
+      ],
+      "production": "USA 2024",
+      "releaseDate": "2024-09-15",
+      "cast": [
+        "Cole Bennett",
+        "Harrison Graves",
+        "Eleanor Westwood",
+        "Jameson Colt",
+        "Wyatt Mercer",
+        "Clara Sinclair",
+        "Nathan Blackwood",
+        "Silas Boone"
+      ],
+      "teaserReleaseDate": "2024-03-17",
+      "earlyRating": "8"
     }
   ],
   "repertoire": [
@@ -732,7 +842,7 @@
       "surname": "Doe",
       "avatar": "",
       "password": "123456",
-      "email": "JohnDoe@gmai.com"
+      "email": "JohnDoe@gmail.com"
     },
     {
       "id": 2,

@@ -1,5 +1,4 @@
 import {ListBox, ListBoxChangeEvent} from 'primereact/listbox';
-import React, {useState} from "react";
 import {useLocation, useNavigate} from "react-router";
 
 const options = [
@@ -7,7 +6,6 @@ const options = [
     {name: 'Film', nav: '/films-page'},
     {name: 'Teaser', nav: '/teasers-page'},
     {name: 'Repertoire', nav: '/repertoire'},
-    {name: 'Hall', nav: '/hall-page'},
     {name: 'Voucher', nav: '/voucher-page'}
 ];
 
@@ -23,7 +21,8 @@ export function Menu() {
 
     return (
         <div className="card flex justify-content-center">
-            <ListBox value={options.find((el) => el.nav === location.pathname)} onChange={(e) => changeRoute(e)} options={options} optionLabel="name"
+            <ListBox value={options.find((el) => el.nav === location.pathname)} onChange={(e) => changeRoute(e)}
+                     options={options} optionLabel="name"
                      className="w-full md:w-10rem"/>
         </div>
     )
