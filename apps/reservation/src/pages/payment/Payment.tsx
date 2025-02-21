@@ -32,7 +32,7 @@ export function Payment() {
             .then((httpResponse) => httpResponse.json())
             .then((vouchers: Voucher[]) => {
                     if (vouchers.length !== 0) {
-                        setTotal((data.state.cost * ((100 - vouchers[0].discount)/ 100)) + 2);
+                        setTotal((data.state.cost * ((100 - vouchers[0].discount) / 100)) + 2);
                         setHasVoucherApplied(true);
                     } else {
                         setHasAlert(true)
@@ -42,58 +42,58 @@ export function Payment() {
     }
 
     return (
-        <div className={"text-blue-50 flex h-full w-3/5 flex-col justify-center items-start text-lg pl-20"}>
-            <Title text={"SUMARY"}></Title>
-            <div className={"w-full text-xl"}><b>TICKETS:</b>
-                {howManyTickets(SeatType.NORMAL)}
-                {howManyTickets(SeatType.KID)}
-                {howManyTickets(SeatType.SENIOR)}
-                <p className={" w-full flex justify-end"}>{(data.state.cost).toFixed(2)} $</p>
-                <div className={"flex justify-between w-full "}>
-                    <p>Booking Fee:</p>
-                    <p>2.00 $</p>
-                </div>
-                <div className={"flex "}>
-                    <p>TOTAL: </p>
-                    <p className={" w-full flex justify-end"}>{(data.state.cost + 2).toFixed(2)} $</p>
-                </div>
-                <div className={"bg-blue-50 w-full h-0.5"}></div>
-
-                <div className={"bg-blue-50 w-full h-0.5"}></div>
-                <div>
-                    <p className={"pt-6"}> Voucher: </p>
-                    <div className={"w-full flex gap-6"}>
-                        <input className={"text-gray-950"}
-                               onChange={(e) => {
-                                   setVoucher(e.target.value)
-                               }}></input>
-                        <Button type={!hasVoucherApplied ? ButtonType.BLUE : ButtonType.DISABLED}
-                                onClick={() => addVoucher()}>
-                            ADD VOUCHER
-                        </Button>
-                    </div>
-                    <p className={"text-sm"}>{hasAlert ? "INVALID VOUCHER" : ""}</p>
-                </div>
-                <p className={"pt-3 flex justify-end w-full }"}><b>Total: {total.toFixed(2)} $</b></p>
-                <div>
-                    <p className={"pt-6"}>DELIVERY:</p>
+        <div className={'h-full w-full flex justify-center'}>
+            <div className={"text-blue-50 flex h-full w-3/5 flex-col text-lg pl-20 justify-center"}>
+                <Title text={"SUMMARY"}></Title>
+                <div className={"w-full text-xl pt-8"}><b>TICKETS:</b>
+                    {howManyTickets(SeatType.NORMAL)}
+                    {howManyTickets(SeatType.KID)}
+                    {howManyTickets(SeatType.SENIOR)}
+                    <p className={"w-full flex justify-end"}>{(data.state.cost).toFixed(2)} $</p>
                     <div className={"flex justify-between w-full"}>
-                        <input className={"text-gray-950"} placeholder={"NAME"}></input>
-                        <input className={"text-gray-950"} placeholder={"SURNAME"}></input>
-                        <input className={"text-gray-950"} placeholder={"E-MAIL ADDRESS"}></input>
+                        <p>Booking Fee:</p>
+                        <p>2.00 $</p>
                     </div>
-                </div>
-                <div>
-                    <p className={"pt-6"}>Payment Methods</p>
-                    <div className={"flex  flex-wrap gap-4"}>
-                        <Button type={ButtonType.PAYMENT} onClick={() => {
-                        }}>Card</Button>
-                        <Button type={ButtonType.PAYMENT} onClick={() => {
-                        }}>PayPal</Button>
-                        <Button type={ButtonType.PAYMENT} onClick={() => {
-                        }}><FontAwesomeIcon icon={faApple}/>Pay</Button>
-                        <Button type={ButtonType.PAYMENT} onClick={() => {
-                        }}><FontAwesomeIcon icon={faApple}/>Pay</Button>
+                    <div className={"flex"}>
+                        <p>TOTAL: </p>
+                        <p className={"w-full flex justify-end"}>{(data.state.cost + 2).toFixed(2)} $</p>
+                    </div>
+                    <div className={"bg-blue-50 w-full h-0.5"}></div>
+
+                    <div className={"bg-blue-50 w-full h-0.5"}></div>
+                    <div>
+                        <p className={"pt-6 pb-2"}> Voucher: </p>
+                        <div className={"w-full flex gap-6"}>
+                            <input className={"text-gray-950 w-2/5"}
+                                   onChange={(e) => {
+                                       setVoucher(e.target.value)
+                                   }}></input>
+                            <Button type={!hasVoucherApplied ? ButtonType.BLUE : ButtonType.DISABLED}
+                                    onClick={() => addVoucher()}>
+                                ADD VOUCHER
+                            </Button>
+                        </div>
+                        <p className={"text-sm"}>{hasAlert ? "INVALID VOUCHER" : ""}</p>
+                    </div>
+                    <p className={"pt-3 flex justify-end w-full"}><b>Total: {total.toFixed(2)} $</b></p>
+                    <div className={'flex flex-col gap-4'}>
+                        <p className={"pt-6 pb-2"}>DELIVERY:</p>
+                        <div className={"flex justify-between w-full"}>
+                            <input className={"text-gray-950"} placeholder={"NAME"}></input>
+                            <input className={"text-gray-950"} placeholder={"SURNAME"}></input>
+                            <input className={"text-gray-950"} placeholder={"E-MAIL ADDRESS"} type={'email'}></input>
+                        </div>
+                    </div>
+                    <div className={'flex flex-col gap-4'}>
+                        <p className={"pt-6 pb-2"}>Payment Methods</p>
+                        <div className={"flex flex-wrap gap-4"}>
+                            <Button type={ButtonType.PAYMENT} onClick={() => {
+                            }}>Card</Button>
+                            <Button type={ButtonType.PAYMENT} onClick={() => {
+                            }}>PayPal</Button>
+                            <Button type={ButtonType.PAYMENT} onClick={() => {
+                            }}><FontAwesomeIcon icon={faApple}/>Pay</Button>
+                        </div>
                     </div>
                 </div>
             </div>

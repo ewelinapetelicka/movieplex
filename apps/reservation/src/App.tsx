@@ -5,6 +5,7 @@ import {FilmPage} from "./pages/film/FilmPage";
 import {ErrorBoard} from "./pages/error/ErrorBoard";
 import {SelectTickets} from "./pages/select-tickets/SelectTickets";
 import {Payment} from "./pages/payment/Payment";
+import {UpcomingFilmPage} from "./pages/upcoming-film/UpcomingFilmPage";
 
 export function App() {
     return (
@@ -14,6 +15,7 @@ export function App() {
                 <Routes>
                     <Route path={"/dashboard-page"} element={<DashboardPage></DashboardPage>}/>
                     <Route path={"/film/:id"} element={<FilmPage></FilmPage>}/>
+                    <Route path={"/teasers/:id"} element={<UpcomingFilmPage></UpcomingFilmPage>}/>
                     <Route path={"/error"} element={<ErrorBoard></ErrorBoard>}/>
                     <Route path={"/select-tickets/:id/:date"} element={<SelectTickets></SelectTickets>}/>
                     <Route path={"/payment"} element={<Payment></Payment>}/>

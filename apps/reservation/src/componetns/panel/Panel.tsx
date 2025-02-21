@@ -29,7 +29,6 @@ export function Panel(props: PanelProps) {
                 })
                 .catch(error => console.error(error));
         }
-
     }, [])
 
     return (
@@ -45,6 +44,9 @@ export function Panel(props: PanelProps) {
                                     onClick={() => {
                                         if (props.isAvailable) {
                                             navigate("/film/" + el.id)
+                                        }
+                                        if (!props.isAvailable) {
+                                            navigate("/teasers/" + el.id)
                                         }
                                     }}></img>
                     })
