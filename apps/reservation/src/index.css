@@ -3,30 +3,51 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111827;
+    background: #111827;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+    background: #1f2937;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1f2937;
+    background: #1f2937;
+}
+
+.ql-snow .ql-stroke {
+    stroke: white !important;
+}
+
+.ql-snow .ql-picker {
+    color: white !important;
+}
+
+.ql-editor.ql-blank::before {
+    color: white !important;
+}
+
+.ql-editor.ql-blank {
+    height: 120px;
+}
+
+.ql-editor.ql-editor {
+    height: 120px;
+    overflow-y: scroll;
 }

@@ -7,7 +7,6 @@ import {MenuItem} from "primereact/menuitem";
 import {useStorage} from "../../../hooks/storage/use-storage";
 import {useUser} from "../../../hooks/user/use-user";
 
-
 interface HeaderProps {
     onUserLogOut: () => void;
 }

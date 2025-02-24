@@ -865,5 +865,77 @@
       "password": "123456",
       "email": "Admin@gmail.com"
     }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "teaserId": 1,
+      "text": "I can't wait to see Logan Carter in the lead role! He always brings such intensity to action films. Plus, prehistoric chaos and genetic experiments? This is going to be epic!"
+    },
+    {
+      "id": 2,
+      "teaserId": 1,
+      "text": "The teaser alone gave me chills! Emma Holloway and Derek Marshall in a dinosaur survival thriller? Sign me up! July can't come fast enough!"
+    },
+    {
+      "id": 3,
+      "teaserId": 1,
+      "text": "Finally, a dinosaur movie with a fresh twist! The concept sounds insane, and with Sophia Hayes and Brandon Cruz in the cast, I know we're in for something special. Counting down the days!"
+    },
+    {
+      "id": 4,
+      "teaserId": 2,
+      "text": "I can't wait to see Victor Graves take on such a dark and intense role! The concept of the Nyx Metre sounds absolutely terrifying. This is going to be the perfect Halloween watch!"
+    },
+    {
+      "id": 5,
+      "teaserId": 2,
+      "text": "Selene Moore and Damian Cross in a supernatural horror? Say no more! The teaser already gave me chills—I just know this movie will keep me up at night!"
+    },
+    {
+      "id": 6,
+      "teaserId": 2,
+      "text": "That eerie artifact, the terrifying entity, and the psychological horror vibes? This might just be the scariest film of the year. October 31st can't come soon enough!"
+    },
+    {
+      "id": 7,
+      "teaserId": 3,
+      "text": "I've been waiting for a true epic fantasy like this! Elias Thornwood and Rowan Everhart leading an elven adventure? This is going to be legendary!"
+    },
+    {
+      "id": 8,
+      "teaserId": 3,
+      "text": "The teaser alone transported me straight into Eldoria! The world-building, the costumes, and the magic all look breathtaking. Can't wait to see Seraphina Moonveil in action!"
+    },
+    {
+      "id": 9,
+      "teaserId": 3,
+      "text": "Alden Stormrider and Eowen Starfall on a perilous quest? Count me in! This movie has the potential to be the next great fantasy saga!"
+    },
+    {
+      "id": 10,
+      "teaserId": 3,
+      "text": "Finally, a fantasy film with deep lore and powerful storytelling! The elven kingdoms, ancient prophecies, and political intrigue make this an absolute must-watch."
+    },
+    {
+      "id": 11,
+      "teaserId": 4,
+      "text": "I can't wait to see Sophie Carter and Ethan Hayes together on screen! Their chemistry in the teaser was amazing—this is going to be the romance of the year!"
+    },
+    {
+      "id": 12,
+      "teaserId": 4,
+      "text": "The story sounds so emotional and relatable! A musician and an athlete finding love? This has all the makings of a beautiful, heartwarming film. June 21st can't come soon enough!"
+    },
+    {
+      "id": 13,
+      "teaserId": 5,
+      "text": "Finally, a proper western with grit and heart! Cole Bennett as Jesse Calloway is the perfect casting choice—this is going to be an epic showdown!"
+    },
+    {
+      "id": 14,
+      "teaserId": 5,
+      "text": "The teaser gave me chills! The cinematography, the tension, and that classic western feel—September 15th can’t come soon enough!"
+    }
   ]
 }

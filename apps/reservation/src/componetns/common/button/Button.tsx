@@ -16,7 +16,8 @@ export enum ButtonType {
     SEAT_CHOSEN = "chosen",
     DELETE = "delete",
     DISABLED = "disabled",
-    PAYMENT = "payment"
+    PAYMENT = "payment",
+    POST = "post",
 
 }
 
@@ -50,7 +51,11 @@ export function Button(props: ButtonProps) {
         if (props.type === ButtonType.PAYMENT) {
             return "w-40 h-12 bg-sky-700 text-blue-50 p-1 border-2 border-white font-bold text-lg"
         }
+        if (props.type === ButtonType.ORANGE) {
+            return "bg-orange-400 text-blue-50 p-3 mb-2 font-bold text-lg"
+        }
         return "bg-orange-400 text-blue-50 p-3 mb-2 font-bold text-lg"
+
     }
 
     return (

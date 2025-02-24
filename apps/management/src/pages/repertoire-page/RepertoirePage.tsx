@@ -14,7 +14,6 @@ export function RepertoirePage() {
     const http = useHttp();
     const [selectedDay, setSelectedDay] = useState(new Date().getDay());
     const navigate = useNavigate();
-
     const days = [
         {name: "Monday", value: 0},
         {name: "Tuesday", value: 1},
