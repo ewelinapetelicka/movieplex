@@ -1,5 +1,8 @@
 {
   "scripts": {
     "backend": "json-server --watch db.json --port 8000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.3"
   }
 }

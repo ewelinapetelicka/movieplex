@@ -33,10 +33,6 @@ export function PlanningDetails(props: PlanningDetailsProps) {
     const [isFilled, setIsFilled] = useState(false);
     const languageOptions = ["EN", "ES", "DE", "FR", "IT", "RU"];
 
-    /*
-        const expectedTime = endTimeCount();
-    */
-
     const dayOptions = [
         {name: 'Monday', value: 1},
         {name: 'Tuesday', value: 2},

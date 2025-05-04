@@ -1,0 +1,10 @@
+{
+  "name": "movieplex",
+  "version": "1.0.0",
+  "scripts": {
+    "start:db": "cd api && npm run backend",
+    "start:management": "cd apps/management && npm run start",
+    "start:reservation": "cd apps/reservation && npm run start"
+  },
+  "private": true
+}
